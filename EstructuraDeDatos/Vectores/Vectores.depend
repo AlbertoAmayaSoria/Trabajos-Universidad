@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1737567132 source:/home/tito/Documents/EstructuraDeDatos/Vectores/main.cpp
+	<iostream>
+	<ostream>
+	"Vector.h"
+
+1737568618 /home/tito/Documents/EstructuraDeDatos/Vectores/Vector.h
+	<iostream>
+	<ostream>
+
+1737568618 source:/home/tito/Documents/EstructuraDeDatos/Vectores/Vector.cpp
+	<iostream>
+	<cmath>
+	<ostream>
+	"Vector.h"
+

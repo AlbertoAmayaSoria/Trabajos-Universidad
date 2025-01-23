@@ -14,3 +14,17 @@
 	<ostream>
 	"Vector.h"
 
+1737596417 source:/home/tito/Documents/DocumentosUniversidad/EstructuraDeDatos/Vectores/main.cpp
+	<iostream>
+	<ostream>
+	"Vector.h"
+
+1737595305 /home/tito/Documents/DocumentosUniversidad/EstructuraDeDatos/Vectores/Vector.h
+	<iostream>
+	<istream>
+	<ostream>
+
+1737595305 source:/home/tito/Documents/DocumentosUniversidad/EstructuraDeDatos/Vectores/Vector.cpp
+	<cmath>
+	"Vector.h"
+

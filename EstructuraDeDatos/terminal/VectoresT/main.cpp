@@ -73,6 +73,7 @@ int main()
         cout << endl << endl;
         cout << "Norma de ";
         cout << v << " = " << v.NormaV();
+        cout << endl << endl;
 
     }catch(const char *message)
     {

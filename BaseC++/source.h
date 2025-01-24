@@ -1,0 +1,6 @@
+#ifndef VECTOR_HPP_INCLUDED
+#define VECTOR_HPP_INCLUDED
+
+
+
+#endif // !VECTOR_HPP_INCLUDED

@@ -1,0 +1,33 @@
+-Los constructores son los unicos que aceptan inicializadores
+
+-Una pila es una coleccion de datos apilados
+
+
+-El constructor de copias se llama/invoca al recibir un objeto como valor de
+argumento, cuando una funcion devuelve un objeto, y cuando se inicializa un
+objeto
+    funcion(clase objeto)
+
+    clase funcion
+    {
+        clase objeto;
+        .
+        .
+        return objeto;
+    }
+
+    clase
+    unObjeto = otroObjeto;
+    o
+    unObjeto(otroObjeto)
+
+-Todos los metodos estaticos solamente tienen acceso a miembros estaticos, ya
+sean otros metodos o datos de la clase. Son atributos de clase no de objetos.
+Todo metodo no estatico de una clase tiene acceso a un puntero de autoreferencia
+a la instancia que lo llame, se le llama this
+
+-El metodo destructor no tiene un tipo de valor devuelto igual que el constructor,
+se llama igual que la clase pero con un tilde al inicio "~", representa una 
+negacion, se invoca automaticamente al terminar el ambito del objeto, no recibe 
+parametros, por lo tanto no pueden ser sobrecargados ysirven para regresar o 
+reestablecer el sistema o los recursos que el constructor asigno

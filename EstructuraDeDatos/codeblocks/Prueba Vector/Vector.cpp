@@ -36,7 +36,7 @@ Vector::Vector(int dimension /* = 1 */, double valor /* = 0*/)
 }
 //El metodo destructor no tiene tipo de valor devuelto igual que el constructor, se llama igual que la clase pero con un tilde al inicio, representa una negacion, se invoca automaticamente al terminar el ambito del objeto, no recibe parametros, por lo tanto no pueden ser sobrecargados, y sirven para regresar o reestablacer el sistema o los recursos que el constructor asigno
 //*****************************************************************************************
-Vector::Vector(const Vector &v) : componente(NULL)
+Vector::Vector(const Vector &v) : componente(NULL);
 {
     *this = v;
 }

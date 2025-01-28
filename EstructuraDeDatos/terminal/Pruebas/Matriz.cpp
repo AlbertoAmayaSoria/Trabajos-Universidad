@@ -123,7 +123,7 @@ Matriz Matriz::transpuesta() const {
 }
 
 // Método para calcular la inversa de una matriz cuadrada
-Matriz Matriz::inversa() const {
+/*Matriz Matriz::inversa() const {
     if (renglones != columnas) {
         throw std::invalid_argument("Solo las matrices cuadradas tienen inversa.");
     }
@@ -147,7 +147,7 @@ Matriz Matriz::inversa() const {
     }
 
     return inversa;
-}
+}*/
 
 // Método para redimensionar la matriz
 void Matriz::redimensionar(unsigned int nuevas_renglones, unsigned int nuevas_columnas) {

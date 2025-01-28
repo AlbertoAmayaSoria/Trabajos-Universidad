@@ -123,40 +123,29 @@ Matriz Matriz::transpuesta() const {
 }
 
 // Método para calcular la inversa de una matriz cuadrada
-/*Matriz Matriz::inversa() const {
-    if (renglones != columnas) {
+//
+
+/*Matriz Matriz::inversa() const
+{
+    if(renglones != columnas)
+    {
         throw std::invalid_argument("Solo las matrices cuadradas tienen inversa.");
-    }
 
-    // Determinante de la matriz
-    int det = 0;
-    if (renglones == 2) {
-        det = datos[0][0] * datos[1][1] - datos[0][1] * datos[1][0];
-    }
+    
 
-    if (det == 0) {
-        throw std::invalid_argument("La matriz no tiene inversa (determinante 0).");
+        return inversa;
     }
-
-    Matriz inversa(renglones, columnas);
-    if (renglones == 2) {
-        inversa.datos[0][0] = datos[1][1] / det;
-        inversa.datos[0][1] = -datos[0][1] / det;
-        inversa.datos[1][0] = -datos[1][0] / det;
-        inversa.datos[1][1] = datos[0][0] / det;
-    }
-
-    return inversa;
 }*/
 
+
 // Método para redimensionar la matriz
-void Matriz::redimensionar(unsigned int nuevas_renglones, unsigned int nuevas_columnas) {
-    int** nueva_matriz = new int*[nuevas_renglones];
-    for (unsigned int i = 0; i < nuevas_renglones; ++i) {
+void Matriz::redimensionar(unsigned int nuevos_renglones, unsigned int nuevas_columnas) {
+    int** nueva_matriz = new int*[nuevos_renglones];
+    for (unsigned int i = 0; i < nuevos_renglones; ++i) {
         nueva_matriz[i] = new int[nuevas_columnas]();
     }
 
-    for (unsigned int i = 0; i < std::min(renglones, nuevas_renglones); ++i) {
+    for (unsigned int i = 0; i < std::min(renglones, nuevos_renglones); ++i) {
         for (unsigned int j = 0; j < std::min(columnas, nuevas_columnas); ++j) {
             nueva_matriz[i][j] = datos[i][j];
         }
@@ -167,7 +156,7 @@ void Matriz::redimensionar(unsigned int nuevas_renglones, unsigned int nuevas_co
     }
     delete[] datos;
 
-    renglones = nuevas_renglones;
+    renglones = nuevos_renglones;
     columnas = nuevas_columnas;
     datos = nueva_matriz;
 }

@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1738086502 source:/home/tito/Documents/DocumentosUniversidad/EstructuraDeDatos/codeblocks/Pruebas/PilaPruebas/PruebasPilas/main.cpp
+	<iostream>
+	"Pila.hpp"
+
+1738086703 /home/tito/Documents/DocumentosUniversidad/EstructuraDeDatos/codeblocks/Pruebas/PilaPruebas/PruebasPilas/Pila.hpp
+	"Pila.tpp"
+
+1738086652 /home/tito/Documents/DocumentosUniversidad/EstructuraDeDatos/codeblocks/Pruebas/PilaPruebas/PruebasPilas/Pila.tpp
+

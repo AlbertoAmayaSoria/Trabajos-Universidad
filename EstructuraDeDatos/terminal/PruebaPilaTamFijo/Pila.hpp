@@ -14,6 +14,8 @@ public:
     // Para pruebas
     void Imprimir() const;
 
+    void Vaciar();
+
 private:
     int tope;
     double elemento[MAX_TAM];

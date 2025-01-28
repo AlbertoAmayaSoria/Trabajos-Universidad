@@ -31,7 +31,7 @@ public:
 
     // Métodos
     Matriz transpuesta() const;
-    //Matriz inversa() const;  // Inversa de una matriz cuadrada
+    Matriz inversa() const;  // Inversa de una matriz cuadrada
     void redimensionar(unsigned int nuevas_renglones, unsigned int nuevas_columnas);
 
     // Operadores de flujo

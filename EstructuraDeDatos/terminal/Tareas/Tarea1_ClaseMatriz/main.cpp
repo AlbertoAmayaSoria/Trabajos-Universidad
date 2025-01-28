@@ -27,6 +27,9 @@ int main() {
 
         Matriz suma = mat1 + mat2;
         //incluir la suma
+        std::cout << mat1; 
+        std::cout << " + ";
+        std::cout << mat2 << std::endl;
         std::cout << "Suma de las matrices:\n" << suma;
 
         Matriz resta = mat1 - mat2;
@@ -45,7 +48,7 @@ int main() {
         //incluir la matriz original
         std::cout << "Transpuesta de la matriz 1:\n" << trans;
 
-        mat1.redimensionar(3, 3);
+        mat1.redimensionar(1, 1);
         //modificar para que el usuario elgia la redimension
         std::cout << "Matriz 1 redimensionada a 3x3:\n" << mat1;
 

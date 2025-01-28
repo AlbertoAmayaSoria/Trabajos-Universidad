@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1738047145 source:/home/tito/Documents/DocumentosUniversidad/EstructuraDeDatos/codeblocks/Tareas/Tarea 1/Tarea1/Matriz.cpp
+	<stdexcept>
+	<iostream>
+	<cmath>
+	"Matriz.h"
+
+1738046581 /home/tito/Documents/DocumentosUniversidad/EstructuraDeDatos/codeblocks/Tareas/Tarea 1/Tarea1/Matriz.h
+	<iostream>
+	<stdexcept>
+
+1738046753 source:/home/tito/Documents/DocumentosUniversidad/EstructuraDeDatos/codeblocks/Tareas/Tarea 1/Tarea1/main.cpp
+	"Matriz.h"
+

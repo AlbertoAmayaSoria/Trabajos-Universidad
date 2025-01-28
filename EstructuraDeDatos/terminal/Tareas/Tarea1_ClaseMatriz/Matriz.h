@@ -10,11 +10,12 @@ public:
     
 private:
     
-    int renglones;
-    int columnas;
+    unsigned int renglones;
+    unsigned int columnas;
 
-    
-    
+    double **componente;
+
+ 
 }
 
 #endif // !MATRIZ_HPP_INCLUDED

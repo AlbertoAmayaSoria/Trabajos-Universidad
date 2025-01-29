@@ -175,10 +175,11 @@ std::istream& operator>>(std::istream& cin, Matriz& mat) {
 // Operador de salida
 std::ostream& operator<<(std::ostream& cout, const Matriz& mat) {
     for (unsigned int i = 0; i < mat.renglones; ++i) {
+        cout << "|";
         for (unsigned int j = 0; j < mat.columnas; ++j) {
             cout << std::setw(8) << mat.datos[i][j] << " ";
         }
-        cout << std::endl;
+        cout << "|" <<std::endl;
     }
     return cout;
 }

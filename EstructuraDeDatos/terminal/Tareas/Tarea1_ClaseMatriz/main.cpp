@@ -5,7 +5,7 @@ int main() {
     //falta documentar todo el codigo
 
     try{
-        unsigned int filas, columnas;
+        unsigned int filas, columnas, NuevaFila, NuevaColumna;
 
         std::cout << "Ingrese el número de renglones para la matriz 1: ";
         std::cin >> filas;
@@ -25,10 +25,13 @@ int main() {
         std::cout << "Ingrese los elementos de la matriz 2:" << std::endl;
         std::cin >> mat2;
 
+        std::cout << std::endl;
+
         Matriz suma = mat1 + mat2;
         //incluir la suma
+        std::cout << "Matriz 1:" << std::endl;
         std::cout << mat1 << std::endl; 
-        std::cout << " + " << std::endl;
+        std::cout << "Matriz 2:" << std::endl;
         std::cout << mat2 << std::endl;
         std::cout << "Suma de las matrices:\n" << suma;
 
@@ -42,15 +45,20 @@ int main() {
 
         Matriz producto_escalar = mat1 * 2;
         //incluir el producto
-        std::cout << "Producto de la matriz por 2:\n" << producto_escalar;
+        std::cout << "Producto de la matriz 1 por 2:\n" << producto_escalar;
 
         Matriz trans = mat1.transpuesta();
         //incluir la matriz original
         std::cout << "Transpuesta de la matriz 1:\n" << trans;
 
-        mat1.redimensionar(1, 1);
+        std::cout << "Ingresa el nuevo numero de columnas de la matriz 1: ";
+        std::cin >> NuevaColumna;
+        std::cout << "Ingresa el nuevo numero de filas de la matriz 1: ";
+        std::cin >> NuevaFila;
+        mat1.redimensionar(NuevaColumna, NuevaFila);
         //modificar para que el usuario elgia la redimension
-        std::cout << "Matriz 1 redimensionada a 3x3:\n" << mat1;
+        std::cout << "Matriz 1 redimensionada a " << NuevaColumna << "x" << NuevaFila << std::endl;
+        std::cout << mat1;
 
         //hacer bien la matriz inversa
 

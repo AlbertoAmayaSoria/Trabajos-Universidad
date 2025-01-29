@@ -2,14 +2,18 @@
 #define MATRIZ_H
 
 #include <iostream>
+#include <iterator>
 #include <stdexcept>
 
 
 class Matriz {
-private:
-    unsigned int renglones;
-    unsigned int columnas;
-    int** datos;
+    
+    //Operadores de flujo
+    friend std::istream& operator >>(std::cin, Matriz& mat);
+    friend std::istream& operator <<(std::cout, const Matriz& mat);
+
+    //Operador no miembro para producto por escalar conmutativo
+    friend Matriz operator*(int escalar, const Matriz& mat);
 
 public:
     // Constructor por defecto
@@ -35,12 +39,13 @@ public:
     Matriz inversa() const;  // Inversa de una matriz cuadrada
     void redimensionar(unsigned int nuevas_renglones, unsigned int nuevas_columnas);
 
-    // Operadores de flujo
-    friend std::istream& operator>>(std::istream& cin, Matriz& mat);
-    friend std::ostream& operator<<(std::ostream& cout, const Matriz& mat);
 
-    // Operador no miembro para producto por escalar conmutativo
-    friend Matriz operator*(int escalar, const Matriz& mat);
+private:
+
+    unsigned int renglones;
+    unsigned int columnas;
+    int** datos;
+    
 };
 
 #endif

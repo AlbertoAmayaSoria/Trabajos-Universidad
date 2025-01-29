@@ -1,4 +1,5 @@
 #include "Matriz.h"
+#include <ostream>
 
 int main() {
 
@@ -30,9 +31,9 @@ int main() {
         Matriz suma = mat1 + mat2;
         //incluir la suma
         std::cout << "Matriz 1:" << std::endl;
-        std::cout << mat1 << std::endl; 
+        std::cout << mat1;
         std::cout << "Matriz 2:" << std::endl;
-        std::cout << mat2 << std::endl;
+        std::cout << mat2;
         std::cout << "Suma de las matrices:\n" << suma;
 
         Matriz resta = mat1 - mat2;

@@ -3,14 +3,15 @@
 
 #include <iostream>
 #include <iterator>
+#include <ostream>
 #include <stdexcept>
 
 
 class Matriz {
     
     //Operadores de flujo
-    friend std::istream& operator >>(std::cin, Matriz& mat);
-    friend std::istream& operator <<(std::cout, const Matriz& mat);
+    friend std::istream& operator >>(std::istream& cin, Matriz& mat);
+    friend std::ostream& operator <<(std::ostream& cout, const Matriz& mat);
 
     //Operador no miembro para producto por escalar conmutativo
     friend Matriz operator*(int escalar, const Matriz& mat);

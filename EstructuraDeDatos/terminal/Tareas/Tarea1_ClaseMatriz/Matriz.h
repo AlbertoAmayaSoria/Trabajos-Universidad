@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdexcept>
 
+
 class Matriz {
 private:
     unsigned int renglones;
@@ -35,8 +36,8 @@ public:
     void redimensionar(unsigned int nuevas_renglones, unsigned int nuevas_columnas);
 
     // Operadores de flujo
-    friend std::istream& operator>>(std::istream& in, Matriz& mat);
-    friend std::ostream& operator<<(std::ostream& out, const Matriz& mat);
+    friend std::istream& operator>>(std::istream& cin, Matriz& mat);
+    friend std::ostream& operator<<(std::ostream& cout, const Matriz& mat);
 
     // Operador no miembro para producto por escalar conmutativo
     friend Matriz operator*(int escalar, const Matriz& mat);

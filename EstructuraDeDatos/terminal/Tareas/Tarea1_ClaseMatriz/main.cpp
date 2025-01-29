@@ -4,7 +4,7 @@ int main() {
 
     //falta documentar todo el codigo
 
-    try {
+    try{
         unsigned int filas, columnas;
 
         std::cout << "Ingrese el número de renglones para la matriz 1: ";
@@ -27,8 +27,8 @@ int main() {
 
         Matriz suma = mat1 + mat2;
         //incluir la suma
-        std::cout << mat1; 
-        std::cout << " + ";
+        std::cout << mat1 << std::endl; 
+        std::cout << " + " << std::endl;
         std::cout << mat2 << std::endl;
         std::cout << "Suma de las matrices:\n" << suma;
 

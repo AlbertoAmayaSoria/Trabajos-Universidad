@@ -1,6 +1,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <cmath>
+#include <iomanip>
 
 #include "Matriz.h"
 
@@ -162,24 +163,24 @@ void Matriz::redimensionar(unsigned int nuevos_renglones, unsigned int nuevas_co
 }
 
 // Operador de entrada
-std::istream& operator>>(std::istream& in, Matriz& mat) {
+std::istream& operator>>(std::istream& cin, Matriz& mat) {
     for (unsigned int i = 0; i < mat.renglones; ++i) {
         for (unsigned int j = 0; j < mat.columnas; ++j) {
-            in >> mat.datos[i][j];
+            cin >> mat.datos[i][j];
         }
     }
-    return in;
+    return cin;
 }
 
 // Operador de salida
-std::ostream& operator<<(std::ostream& out, const Matriz& mat) {
+std::ostream& operator<<(std::ostream& cout, const Matriz& mat) {
     for (unsigned int i = 0; i < mat.renglones; ++i) {
         for (unsigned int j = 0; j < mat.columnas; ++j) {
-            out << mat.datos[i][j] << " ";
+            cout << std::setw(8) << mat.datos[i][j] << " ";
         }
-        out << std::endl;
+        cout << std::endl;
     }
-    return out;
+    return cout;
 }
 
 // Operador no miembro para el producto por escalar conmutativo

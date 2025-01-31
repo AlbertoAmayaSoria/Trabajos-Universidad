@@ -1,3 +1,0 @@
-C:/Users/Michell O/Cuarto Semestre/Estructura de datos/Tarea1matrices/cmake-build-debug/CMakeFiles/Tarea1matrices.dir
-C:/Users/Michell O/Cuarto Semestre/Estructura de datos/Tarea1matrices/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Michell O/Cuarto Semestre/Estructura de datos/Tarea1matrices/cmake-build-debug/CMakeFiles/rebuild_cache.dir

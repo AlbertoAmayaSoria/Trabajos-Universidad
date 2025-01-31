@@ -1,0 +1,10 @@
+# ninja log v6
+17	467	7599900589772530	build.ninja	eb117232186aee2f
+4	326	7599813954721454	CMakeFiles/Tarea1matrices.dir/main.cpp.obj	17bf66cdac129f5e
+14	1100	7599779006839555	CMakeFiles/Tarea1matrices.dir/Matriz.cpp.obj	3432dd081c4414de
+326	405	7599813957935118	Tarea1matrices.exe	8e7177f23b3ef998
+8	751	7599900652270179	CMakeFiles/Tarea1matrices.dir/main.cpp.obj	17bf66cdac129f5e
+752	1003	7599900659701411	Tarea1matrices.exe	8e7177f23b3ef998
+9	691	7599914252634332	CMakeFiles/Tarea1matrices.dir/main.cpp.obj	17bf66cdac129f5e
+20	796	7599914252746114	CMakeFiles/Tarea1matrices.dir/Matriz.cpp.obj	3432dd081c4414de
+796	968	7599914260495142	Tarea1matrices.exe	8e7177f23b3ef998

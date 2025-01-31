@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "Matriz.h"
 
 int main() {
@@ -68,10 +69,15 @@ int main() {
         //incluir la matriz original
         cout << "Transpuesta de la matriz 1:\n" << trans;
 
-        cout << "Ingresa el nuevo numero de columnas de la matriz 1: ";
-        cin >> NuevaColumna;
-        cout << "Ingresa el nuevo numero de filas de la matriz 1: ";
-        cin >> NuevaFila;
+        do{
+            cout << "Ingresa el nuevo numero de columnas de la matriz 1: ";
+            cin >> NuevaColumna;
+        }while (NuevaColumna < 1);
+        
+        do{
+            cout << "Ingresa el nuevo numero de filas de la matriz 1: ";
+            cin >> NuevaFila;
+        }while (NuevaFila < 1);
         Matriz red = mat1.redimensionar(NuevaColumna, NuevaFila);
         //modificar para que el usuario elgia la redimension
         cout << "Matriz 1 redimensionada a " << NuevaColumna << "x" << NuevaFila << endl;

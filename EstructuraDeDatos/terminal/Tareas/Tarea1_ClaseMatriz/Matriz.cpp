@@ -179,37 +179,7 @@ Matriz Matriz::inversa() const {
     return I; // La parte derecha de la matriz aumentada es la inversa
 }
 
-
-
-
-
-// Método para redimensionar la matriz
-/*Matriz Matriz::redimensionar(unsigned int nuevos_renglones, unsigned int nuevas_columnas)const {
-    int** nueva_matriz = new int*[nuevos_renglones];
-    for (unsigned int i = 0; i < nuevos_renglones; ++i) {
-        nueva_matriz[i] = new int[nuevas_columnas]();
-    }
-    Matriz red(*this);
-
-    for (unsigned int i = 0; i < std::min(renglones, nuevos_renglones); ++i) {
-        for (unsigned int j = 0; j < std::min(columnas, nuevas_columnas); ++j) {
-            nueva_matriz[i][j] = red[i][j];
-        }
-    }
-
-    for (unsigned int i = 0; i < renglones; ++i) {
-        delete[] red[i];
-    }
-    delete[] red;
-
-    renglones = nuevos_renglones;
-    columnas = nuevas_columnas;
-    red = nueva_matriz;
-
-    return red;
-}*/
-
-
+//redimenzionar la matriz
 Matriz Matriz::redimensionar(unsigned int nuevos_renglones, unsigned int nuevas_columnas) const {
     // Crear una nueva matriz con las dimensiones especificadas
     Matriz nueva_matriz(nuevos_renglones, nuevas_columnas);

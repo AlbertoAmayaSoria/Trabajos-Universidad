@@ -1,0 +1,2 @@
+//librerias necesarias
+//funciones necesarias

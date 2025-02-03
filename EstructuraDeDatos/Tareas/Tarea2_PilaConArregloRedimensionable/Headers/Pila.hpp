@@ -1,107 +1,62 @@
+
 #ifndef PILA_HPP_INCLUDED
 #define PILA_HPP_INCLUDED
 
-#define MAX_TAM 100
+#include <iostream>
+
 /**
  * Contenedor tipo LIFO de datos doble
  * \tparam Tipo Tipo de dato
+ * \tparam cap Capacidad máxima de la pila
  */
-template <typename Tipo = int, int cap = 10>
-class Pila{
+template <typename Tipo = int, int cap = 5>
+class Pila {
 public:
-    /** \brief Constructor de la Pila. Genera una pila vac&iacute;a
-     */
-     Pila(); //dinamica----------------------------------------------------------------------------
-    
-     /** \brief Constructor de copias. Genera una copia de la Pila
-      *
-      * \param p. La pila a copiar
-      */
-     Pila(const Pila &p); //dinamica----------------------------------------------------------------------
-    
+    /** \brief Constructor de la Pila. Genera una pila vacía */
+    Pila(); 
 
-    /** \brief Sobrecarga del operador = para que funcione con Pilas
-      *
-      * \param p Pila a igualar
-      * \return Pila igualada
-      */
-     Pila & operator=(const Pila &p); //dinamica----------------------------------------------------------------
-    
+    /** \brief Constructor por copia */
+    Pila(const Pila &p);
 
-     /** \brief Destructor de un objeto Pila
-      */
-     ~Pila();
+    /** \brief Sobrecarga del operador de asignación */
+    Pila & operator=(const Pila &p);
 
+    /** \brief Destructor de la Pila */
+    ~Pila();
 
-    /** \brief Permite agregar un elemento a la pila
-     *
-     * \param valor Valor a agregar
-     * \return Ninguno
-     * \exception const char * Cuando se intenta agregar en una pila llena
-     */
+    /** \brief Agregar un elemento a la pila */
     void Apilar(Tipo valor);
 
-    /** \brief Permite eliminar un elemento de la pila
-     *
-     * \return Ninguno
-     * \exception char * Cuando se intenta eliminar de una pila vac&iacute;a
-     */
+    /** \brief Eliminar un elemento de la pila */
     void Desapilar();
 
-    /** \brief Obtiene el elemento que se encuentra en el tope de la pila
-     *
-     * \return El valor del tope
-     * \exception char * Cuando se intenta obtener el valor del tope de una pila vac&iacute;a
-     */
+    /** \brief Obtener el elemento en el tope de la pila */
     Tipo ObtenerTope() const;
 
-    /** \brief Indica si la pila est&aacute; vac&iacute
-     *
-     * \return true si la pila est&aacute; vac&iacute;, false en caso contrario
-     */
+    /** \brief Indicar si la pila está vacía */
     bool EstaVacia() const;
 
-
-    //este metodo no
-    /** \brief Indica si la pila est&aacute; llena
-     *
-     * \return true si la pila est&aacute; llena, false en caso contrario
-     *
-     */
+    /** \brief Indicar si la pila está llena */
     bool EstaLlena() const;
 
-    /** \brief Vac&iacute la pila
-     *
-     * \return Ninguno
-     *
-     */
+    /** \brief Vaciar la pila */
     void Vaciar();
 
-    /** \brief 
-     *
-     * return numero de elementos en la pila
-     */
-    int ElementosPila();
+    /** \brief Obtener el número de elementos en la pila */
+    int ElementosPila() const;
 
-    /** \brief Capacidad de la pila
-     *
-     * return Capacidad de la pila
-     */
-    int CapacidadPila();
+    /** \brief Obtener la capacidad máxima de la pila */
+    int CapacidadPila() const;
 
-    /** \brief Imprime los elementos de la pla del fondo hasta el tope
-     *
-     * \return Ninguno
-     *
-     */
-    void Imprimir() const; //para pruebas
+    /** \brief Imprimir los elementos de la pila */
+    void Imprimir() const;
 
 private:
-    Tipo elemento[cap];
-    int tope;
-}
-;
+    Tipo *elemento;  // Puntero dinámico para almacenar los elementos
+    int tope;        // Índice del tope de la pila
+};
 
 #include "../Templates/Pila.tpp"
 
 #endif // PILA_HPP_INCLUDED
+

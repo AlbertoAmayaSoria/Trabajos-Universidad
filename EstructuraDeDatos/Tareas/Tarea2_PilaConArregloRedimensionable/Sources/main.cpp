@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
     try{
-       /* Pila<Vector, 15> pilaVector;
+        Pila<Vector, 15> pilaVector;
 
         if(pilaVector.EstaVacia()) cout << "La pila est\240 vac\241a\n";
         else                   cout << "La pila no est\240 vac\241a\n";
@@ -42,15 +42,9 @@ int main()
         pilaInt.Desapilar();
 
         pilaInt.Imprimir();
-        cout << "\n\n";*/
+        cout << "\n\n";
 
-        Pila<string, 3> PilaString;
-
-        PilaString.Apilar("Hola");
-        PilaString.Apilar("mundo");
-        PilaString.Apilar("gente");
-
-        PilaString.Imprimir();
+       
 
 
 

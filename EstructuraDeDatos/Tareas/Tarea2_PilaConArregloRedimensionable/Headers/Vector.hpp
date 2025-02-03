@@ -1,7 +1,8 @@
 /**
  * \file Vector.hpp
  * Contiene la definici&oacute;n de una clase que representa un vector algebraico
- * \author Oiram Alberto Figueroa Torres
+ * \author Amaya Soria Angel Alberto
+ * \authorAltamirano Ocejo Michell Berenice 
  * \date 24/01/2025
 */
 

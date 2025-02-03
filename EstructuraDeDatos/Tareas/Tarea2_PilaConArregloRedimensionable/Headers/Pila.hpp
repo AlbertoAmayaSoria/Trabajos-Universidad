@@ -11,7 +11,26 @@ class Pila{
 public:
     /** \brief Constructor de la Pila. Genera una pila vac&iacute;a
      */
-     Pila(); //dinamica-----------------------------------------------------------------------------
+     Pila(); //dinamica----------------------------------------------------------------------------
+    
+     /** \brief Constructor de copias. Genera una copia de la Pila
+      *
+      * \param p. La pila a copiar
+      */
+     Pila(const Pila &p); //dinamica----------------------------------------------------------------------
+    
+
+    /** \brief Sobrecarga del operador = para que funcione con Pilas
+      *
+      * \param p Pila a igualar
+      * \return Pila igualada
+      */
+     Pila & operator=(const Pila &p); //dinamica----------------------------------------------------------------
+    
+
+     /** \brief Destructor de un objeto Pila
+      */
+     ~Pila();
 
 
     /** \brief Permite agregar un elemento a la pila
@@ -42,6 +61,8 @@ public:
      */
     bool EstaVacia() const;
 
+
+    //este metodo no
     /** \brief Indica si la pila est&aacute; llena
      *
      * \return true si la pila est&aacute; llena, false en caso contrario
@@ -56,18 +77,30 @@ public:
      */
     void Vaciar();
 
-    // Para pruebas
+    /** \brief 
+     *
+     * return numero de elementos en la pila
+     */
+    int ElementosPila();
+
+    /** \brief Capacidad de la pila
+     *
+     * return Capacidad de la pila
+     */
+    int CapacidadPila();
+
     /** \brief Imprime los elementos de la pla del fondo hasta el tope
      *
      * \return Ninguno
      *
      */
-    void Imprimir() const;
+    void Imprimir() const; //para pruebas
 
 private:
     Tipo elemento[cap];
     int tope;
-};
+}
+;
 
 #include "../Templates/Pila.tpp"
 

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "../Headers/Pila.hpp"
 #include "../Headers/Vector.hpp"
 
@@ -7,7 +8,7 @@ using namespace std;
 int main()
 {
     try{
-        Pila<Vector, 15> pilaVector;
+       /* Pila<Vector, 15> pilaVector;
 
         if(pilaVector.EstaVacia()) cout << "La pila est\240 vac\241a\n";
         else                   cout << "La pila no est\240 vac\241a\n";
@@ -28,11 +29,11 @@ int main()
 
 
         Pila<> pilaInt;
-        pilaInt.Apilar(1);
-        pilaInt.Apilar(2);
-        pilaInt.Apilar(3);
-        pilaInt.Apilar(4);
-        pilaInt.Apilar(5);
+        pilaInt.Apilar(11);
+        pilaInt.Apilar(22);
+        pilaInt.Apilar(33);
+        pilaInt.Apilar(44);
+        pilaInt.Apilar(55);
 
         pilaInt.Imprimir();
         cout << "\n\n";
@@ -41,9 +42,20 @@ int main()
         pilaInt.Desapilar();
 
         pilaInt.Imprimir();
-        cout << "\n\n";
+        cout << "\n\n";*/
+
+        Pila<string, 3> PilaString;
+
+        PilaString.Apilar("Hola");
+        PilaString.Apilar("mundo");
+        PilaString.Apilar("gente");
+
+        PilaString.Imprimir();
 
 
+
+
+        
 
 
 

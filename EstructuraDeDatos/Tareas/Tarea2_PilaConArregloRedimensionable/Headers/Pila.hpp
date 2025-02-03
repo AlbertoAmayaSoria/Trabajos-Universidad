@@ -1,4 +1,10 @@
-
+/**
+ * \file Pila.hpp
+ * Contiene la definici&oacute;n de una clase que representa una pila
+ * \author Amaya Soria Angel Alberto
+ * \authorAltamirano Ocejo Michell Berenice 
+ * \date 01/02/2025
+*/
 #ifndef PILA_HPP_INCLUDED
 #define PILA_HPP_INCLUDED
 

@@ -1,3 +1,5 @@
+#ifndef PILA_HPP_INCLUDED
+#define PILA_HPP_INCLUDED
 /**
  * \file Pila.hpp
  * Contiene la definici&oacute;n de una clase que representa una pila
@@ -5,9 +7,6 @@
  * \author Altamirano Ocejo Michell Berenice 
  * \date 01/02/2025
 */
-#ifndef PILA_HPP_INCLUDED
-#define PILA_HPP_INCLUDED
-
 #include <iostream>
 
 /**
@@ -40,10 +39,7 @@ public:
     Tipo ObtenerTope() const;
 
     /** \brief Indicar si la pila está vacía */
-    bool EstaVacia() const;
-
-    /** \brief Indicar si la pila está llena */
-    bool EstaLlena() const;
+    bool EstaVacia() const; 
 
     /** \brief Vaciar la pila */
     void Vaciar();

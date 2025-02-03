@@ -44,13 +44,13 @@ int main()
         pilaInt.Imprimir();
         cout << "\n\n";
 
-       
+        /*Pila<int, 5> PilaEnteros;
 
-
-
-
+        PilaEnteros.Apilar(1);
+        PilaEnteros.Apilar(1); 
+        PilaEnteros.Apilar(1);
         
-
+        PilaEnteros.Imprimir();*/
 
 
 

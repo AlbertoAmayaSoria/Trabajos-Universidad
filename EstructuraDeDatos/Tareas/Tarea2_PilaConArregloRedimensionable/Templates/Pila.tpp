@@ -65,7 +65,6 @@ Pila<Tipo, cap>::~Pila() {
  */
 template <typename Tipo, int cap>
 void Pila<Tipo, cap>::Apilar(Tipo valor) {
-    if (EstaLlena()) throw "Pila llena...";
     elemento[++tope] = valor;
 }
 

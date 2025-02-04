@@ -1,3 +1,4 @@
+
 #include "iostream"
 /**
  * @file Pila.tpp
@@ -9,22 +10,24 @@
 /**
  * @brief Constructor por defecto de la pila.
  *
- * Inicializa una pila vacía con una capacidad fija.
+ * Inicializa una pila vacía con una capacidad predeterminada.
  */
-template <typename Tipo, int cap>
-Pila<Tipo, cap>::Pila() : tope(-1) {
-    elemento = new Tipo[cap];
+template <typename Tipo>
+Pila<Tipo>::Pila() : tope(-1), capacidad(5) {
+    // Inicializa una pila vacía con una capacidad predeterminada (5 por defecto)
+    elemento = new Tipo[capacidad];
 }
 
 /**
  * @brief Constructor de copia.
  * @param p Pila a copiar.
  *
- * Crea una copia exacta de otra pila, copiando sus elementos.
+ * Crea una copia exacta de otra pila, copiando sus elementos y capacidad.
  */
-template <typename Tipo, int cap>
-Pila<Tipo, cap>::Pila(const Pila &p) : tope(p.tope) {
-    elemento = new Tipo[cap];
+template <typename Tipo>
+Pila<Tipo>::Pila(const Pila &p) : tope(p.tope), capacidad(p.capacidad) {
+    // Asigna la capacidad de la pila fuente
+    elemento = new Tipo[capacidad];
     for (int i = 0; i <= tope; ++i) {
         elemento[i] = p.elemento[i];
     }
@@ -34,17 +37,32 @@ Pila<Tipo, cap>::Pila(const Pila &p) : tope(p.tope) {
  * @brief Sobrecarga del operador de asignación.
  * @param p Pila a asignar.
  * @return Referencia a la pila asignada.
+ *
+ * Realiza una copia de los elementos y ajusta la capacidad si es necesario.
  */
-template <typename Tipo, int cap>
-Pila<Tipo, cap> & Pila<Tipo, cap>::operator=(const Pila<Tipo, cap> &p) {
+template <typename Tipo>
+Pila<Tipo>& Pila<Tipo>::operator=(const Pila<Tipo>& p) {
     if (this == &p) return *this;
 
+    // Liberar la memoria del arreglo actual
     delete[] elemento;
+
+    // Si la capacidad de la pila fuente es mayor que la de la pila destino, redimensionar
+    if (capacidad < p.capacidad) {
+        // Redimensionar el arreglo
+        capacidad = p.capacidad;
+        elemento = new Tipo[capacidad];
+    } else {
+        // Usar la capacidad original si la pila fuente no excede el tamaño de la pila destino
+        elemento = new Tipo[capacidad];
+    }
+
+    // Copiar los elementos de la pila fuente a la pila destino
     tope = p.tope;
-    elemento = new Tipo[cap];
     for (int i = 0; i <= tope; ++i) {
         elemento[i] = p.elemento[i];
     }
+
     return *this;
 }
 
@@ -53,8 +71,8 @@ Pila<Tipo, cap> & Pila<Tipo, cap>::operator=(const Pila<Tipo, cap> &p) {
  *
  * Libera la memoria asignada dinámicamente.
  */
-template <typename Tipo, int cap>
-Pila<Tipo, cap>::~Pila() {
+template <typename Tipo>
+Pila<Tipo>::~Pila() {
     delete[] elemento;
 }
 
@@ -63,8 +81,12 @@ Pila<Tipo, cap>::~Pila() {
  * @param valor Elemento a agregar.
  * @throw const char* Excepción si la pila está llena.
  */
-template <typename Tipo, int cap>
-void Pila<Tipo, cap>::Apilar(Tipo valor) {
+template <typename Tipo>
+void Pila<Tipo>::Apilar(Tipo valor) {
+    if (EstaLlena()) {
+        // Redimensionar si la pila está llena
+        Redimensionar();
+    }
     elemento[++tope] = valor;
 }
 
@@ -72,8 +94,8 @@ void Pila<Tipo, cap>::Apilar(Tipo valor) {
  * @brief Elimina el elemento en el tope de la pila.
  * @throw const char* Excepción si la pila está vacía.
  */
-template <typename Tipo, int cap>
-void Pila<Tipo, cap>::Desapilar() {
+template <typename Tipo>
+void Pila<Tipo>::Desapilar() {
     if (EstaVacia()) throw "Pila vacía...";
     --tope;
 }
@@ -83,8 +105,8 @@ void Pila<Tipo, cap>::Desapilar() {
  * @return Elemento en el tope.
  * @throw const char* Excepción si la pila está vacía.
  */
-template <typename Tipo, int cap>
-Tipo Pila<Tipo, cap>::ObtenerTope() const {
+template <typename Tipo>
+Tipo Pila<Tipo>::ObtenerTope() const {
     if (EstaVacia()) throw "Pila vacía...";
     return elemento[tope];
 }
@@ -93,16 +115,16 @@ Tipo Pila<Tipo, cap>::ObtenerTope() const {
  * @brief Verifica si la pila está vacía.
  * @return true si está vacía, false en caso contrario.
  */
-template <typename Tipo, int cap>
-bool Pila<Tipo, cap>::EstaVacia() const {
+template <typename Tipo>
+bool Pila<Tipo>::EstaVacia() const {
     return tope == -1;
 }
 
 /**
  * @brief Vacía la pila eliminando todos los elementos.
  */
-template <typename Tipo, int cap>
-void Pila<Tipo, cap>::Vaciar() {
+template <typename Tipo>
+void Pila<Tipo>::Vaciar() {
     tope = -1;
 }
 
@@ -110,8 +132,8 @@ void Pila<Tipo, cap>::Vaciar() {
  * @brief Obtiene la cantidad de elementos en la pila.
  * @return Número de elementos en la pila.
  */
-template <typename Tipo, int cap>
-int Pila<Tipo, cap>::ElementosPila() const {
+template <typename Tipo>
+int Pila<Tipo>::ElementosPila() const {
     return tope + 1;
 }
 
@@ -119,9 +141,9 @@ int Pila<Tipo, cap>::ElementosPila() const {
  * @brief Obtiene la capacidad máxima de la pila.
  * @return Capacidad de la pila.
  */
-template <typename Tipo, int cap>
-int Pila<Tipo, cap>::CapacidadPila() const {
-    return cap;
+template <typename Tipo>
+int Pila<Tipo>::CapacidadPila() const {
+    return capacidad;
 }
 
 /**
@@ -129,12 +151,44 @@ int Pila<Tipo, cap>::CapacidadPila() const {
  *
  * Muestra los elementos de la pila desde el fondo hasta el tope.
  */
-template <typename Tipo, int cap>
-void Pila<Tipo, cap>::Imprimir() const {
+template <typename Tipo>
+void Pila<Tipo>::Imprimir() const {
     for (int i = 0; i <= tope; ++i) {
         std::cout << elemento[i];
         if (i < tope) std::cout << ", ";
     }
     std::cout << " <- TOPE\n";
+}
+
+/**
+ * @brief Redimensiona la pila.
+ *
+ * Duplica la capacidad de la pila cuando esta se llena.
+ */
+template <typename Tipo>
+void Pila<Tipo>::Redimensionar() {
+    // Doblar la capacidad actual
+    capacidad *= 2;
+    Tipo* nuevoElemento = new Tipo[capacidad];
+
+    // Copiar los elementos existentes
+    for (int i = 0; i <= tope; ++i) {
+        nuevoElemento[i] = elemento[i];
+    }
+
+    // Liberar el antiguo arreglo
+    delete[] elemento;
+
+    // Actualizar el puntero al nuevo arreglo
+    elemento = nuevoElemento;
+}
+
+/**
+ * @brief Verifica si la pila está llena.
+ * @return true si está llena, false en caso contrario.
+ */
+template <typename Tipo>
+bool Pila<Tipo>::EstaLlena() const {
+    return tope + 1 == capacidad;
 }
 

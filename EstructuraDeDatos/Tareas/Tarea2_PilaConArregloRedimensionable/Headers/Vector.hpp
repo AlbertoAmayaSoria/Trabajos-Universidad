@@ -1,14 +1,13 @@
-/**
- * \file Vector.hpp
- * Contiene la definici&oacute;n de una clase que representa un vector algebraico
- * \author Amaya Soria Angel Alberto
- * \authorAltamirano Ocejo Michell Berenice 
- * \date 24/01/2025
-*/
-
-
 #ifndef VECTOR_HPP_INCLUDED
 #define VECTOR_HPP_INCLUDED
+
+/**
+ * \file Pila.hpp
+ * Contiene la definici&oacute;n de una clase que representa una pila
+ * \author Amaya Soria Angel Alberto
+ * \author Altamirano Ocejo Michell Berenice 
+ * \date 01/02/2025
+*/
 
 #include <iostream>
 
@@ -64,11 +63,6 @@ private:
     //Métodos de utileria
     void EstablecerDim(int dimension);
 };
-
-
-
-
-
 
 
 #endif // VECTOR_HPP_INCLUDED

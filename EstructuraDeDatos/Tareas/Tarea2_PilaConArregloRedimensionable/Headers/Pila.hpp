@@ -14,7 +14,7 @@
  * \tparam Tipo Tipo de dato
  * \tparam cap Capacidad máxima de la pila
  */
-template <typename Tipo = int, int cap = 5>
+template <typename Tipo>
 class Pila {
 public:
     /** \brief Constructor de la Pila. Genera una pila vacía */
@@ -56,9 +56,11 @@ public:
 private:
     Tipo *elemento;  // Puntero dinámico para almacenar los elementos
     int tope;        // Índice del tope de la pila
+    int capacidad;   // Capacidad dinámica de la pila
+    void Redimensionar(); // Redimensiona la pila cuando está llena
+    bool EstaLlena() const; // Indica si la pila está llena
 };
 
 #include "../Templates/Pila.tpp"
 
 #endif // PILA_HPP_INCLUDED
-

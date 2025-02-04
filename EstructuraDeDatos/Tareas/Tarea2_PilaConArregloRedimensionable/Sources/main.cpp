@@ -7,63 +7,83 @@ using namespace std;
 
 int main()
 {
-    try{
-        Pila<Vector, 15> pilaVector;
+    try {
+        // Crear una pila de vectores con capacidad 15
+        Pila<Vector> pilaVector;
 
-        if(pilaVector.EstaVacia()) cout << "La pila est\240 vac\241a\n";
-        else                   cout << "La pila no est\240 vac\241a\n";
+        // Comprobar si la pila está vacía
+        if(pilaVector.EstaVacia())  
+            cout << "La pila está vacía\n";
+        else                        
+            cout << "La pila no está vacía\n";
 
+        // Apilar un objeto Vector
         pilaVector.Apilar(Vector(2,1.5));
-        //pilaVector.Apilar(3);
-
-        Pila<Vector, 15> otraPilaVec;
-        otraPilaVec = pilaVector;
-
-        pilaVector.Desapilar();
-
+        cout << "Capacidad pila Vector: " << pilaVector.CapacidadPila() << endl;
         pilaVector.Imprimir();
+        pilaVector.Apilar(Vector(2,1.5));
+        pilaVector.Apilar(Vector(2,1.5));
+        pilaVector.Apilar(Vector(2,1.5));
+        pilaVector.Apilar(Vector(2,1.5));
+        pilaVector.Apilar(Vector(2,1.5));
+        cout << "Capacidad pila Vector: " << pilaVector.CapacidadPila() << endl;
+        pilaVector.Imprimir();
+
+        // Crear otra pila de vectores con capacidad 11
+        Pila<Vector> otraPilaVec;
+        otraPilaVec = pilaVector; // Operador de asignación (usará redimensionamiento si es necesario)
+        cout << "Esta es otra pila: " << endl;
+        otraPilaVec.Imprimir();
+
+        // Desapilar un elemento
+        pilaVector.Desapilar();
+        
         cout << endl;
+        cout << "Pila 1: " << endl;
+        // Imprimir ambas pilas
+        pilaVector.Imprimir();
+        cout << "Pila 2: " << endl;
+
         otraPilaVec.Imprimir();
         cout << endl;
 
-
-
-        Pila<> pilaInt;
+        // Crear una pila de enteros con capacidad por defecto (5)
+        Pila<int> pilaInt;
         pilaInt.Apilar(11);
         pilaInt.Apilar(22);
         pilaInt.Apilar(33);
         pilaInt.Apilar(44);
         pilaInt.Apilar(55);
 
+        // Imprimir la pila de enteros
         pilaInt.Imprimir();
         cout << "\n\n";
 
+        // Desapilar algunos elementos
         pilaInt.Desapilar();
         pilaInt.Desapilar();
 
+        // Imprimir después de desapilar
         pilaInt.Imprimir();
         cout << "\n\n";
 
-        /*Pila<int, 5> PilaEnteros;
-
+        // Ejemplo comentado con pilas de enteros
+        Pila<int> PilaEnteros;
         PilaEnteros.Apilar(1);
         PilaEnteros.Apilar(1); 
         PilaEnteros.Apilar(1);
+        PilaEnteros.Imprimir();
+        cout << "Capacidad pila: " << PilaEnteros.CapacidadPila() << endl;
+        PilaEnteros.Apilar(1);
+        PilaEnteros.Apilar(1); 
+        PilaEnteros.Apilar(1);
+        PilaEnteros.Imprimir();
+        cout << "Capacidad pila: "<<PilaEnteros.CapacidadPila();
         
-        PilaEnteros.Imprimir();*/
-
-
-
-    }catch(const char *mensaje){
+    } catch (const char* mensaje) {
         cerr << "Error: " << mensaje << endl;
     }
 
-
-
-
-
-
-
-
     return 0;
 }
+

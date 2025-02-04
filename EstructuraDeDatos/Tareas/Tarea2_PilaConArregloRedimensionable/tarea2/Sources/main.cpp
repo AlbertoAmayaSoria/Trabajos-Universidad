@@ -1,3 +1,11 @@
+/*
+ * \autor Amaya Soria Angel Alberto
+ * \autor Altamirano Ocejo Michell Berenice 
+ * \descripción: Programa de pilas, mediante el cual puedes crear una pila, anadir y quitar elementos, vaciar la pila.
+ *              En general permite trabajar con pilas de diferentes tipos de datos
+ * \Fecha: 02/02/2025
+ */
+
 #include <iostream>
 #include <string>
 #include <complex>

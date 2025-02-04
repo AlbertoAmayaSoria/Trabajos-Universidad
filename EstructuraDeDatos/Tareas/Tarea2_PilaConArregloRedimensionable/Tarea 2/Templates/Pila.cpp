@@ -86,7 +86,7 @@ void Pila<Tipo>::Apilar(Tipo valor) {
  */
 template <typename Tipo>
 void Pila<Tipo>::Desapilar() {
-    if (EstaVacia()) throw "Pila vacía...";
+    if (EstaVacia()) throw "Pila vac\242a...";
     --tope;
 }
 
@@ -97,7 +97,7 @@ void Pila<Tipo>::Desapilar() {
  */
 template <typename Tipo>
 Tipo Pila<Tipo>::ObtenerTope() const {
-    if (EstaVacia()) throw "Pila vacía...";
+    if (EstaVacia()) throw "Pila vac\242a...";
     return elemento[tope];
 }
 

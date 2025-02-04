@@ -117,9 +117,9 @@ public:
     void Imprimir() const;
 
 private:
-    Tipo *elemento;  ///< Puntero dinámico para almacenar los elementos de la pila.
-    int tope;        ///< Índice del elemento en la cima de la pila.
-    int capacidad;   ///< Capacidad actual de la pila.
+    Tipo *elemento;  /// Puntero dinámico para almacenar los elementos de la pila.
+    int tope;        /// Índice del elemento en la cima de la pila.
+    int capacidad;   /// Capacidad actual de la pila.
 
     /** 
      * \brief Redimensiona la pila cuando se llena.

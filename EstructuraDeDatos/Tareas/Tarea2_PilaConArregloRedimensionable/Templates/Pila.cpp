@@ -1,8 +1,6 @@
-
-#include "iostream"
 /**
  * @file Pila.tpp
- * @brief Implementación de la clase plantilla Pila (LIFO)
+ * @brief Implementación de la clase plantilla Pila (LIFO).
  */
 
 #include <iostream>
@@ -14,7 +12,6 @@
  */
 template <typename Tipo>
 Pila<Tipo>::Pila() : tope(-1), capacidad(5) {
-    // Inicializa una pila vacía con una capacidad predeterminada (5 por defecto)
     elemento = new Tipo[capacidad];
 }
 
@@ -22,11 +19,10 @@ Pila<Tipo>::Pila() : tope(-1), capacidad(5) {
  * @brief Constructor de copia.
  * @param p Pila a copiar.
  *
- * Crea una copia exacta de otra pila, copiando sus elementos y capacidad.
+ * Crea una nueva pila como copia exacta de otra, duplicando sus elementos y capacidad.
  */
 template <typename Tipo>
 Pila<Tipo>::Pila(const Pila &p) : tope(p.tope), capacidad(p.capacidad) {
-    // Asigna la capacidad de la pila fuente
     elemento = new Tipo[capacidad];
     for (int i = 0; i <= tope; ++i) {
         elemento[i] = p.elemento[i];
@@ -36,28 +32,22 @@ Pila<Tipo>::Pila(const Pila &p) : tope(p.tope), capacidad(p.capacidad) {
 /**
  * @brief Sobrecarga del operador de asignación.
  * @param p Pila a asignar.
- * @return Referencia a la pila asignada.
+ * @return Referencia a la pila actual tras la asignación.
  *
- * Realiza una copia de los elementos y ajusta la capacidad si es necesario.
+ * Libera la memoria existente, asigna nueva memoria si es necesario y copia los elementos.
  */
 template <typename Tipo>
 Pila<Tipo>& Pila<Tipo>::operator=(const Pila<Tipo>& p) {
     if (this == &p) return *this;
 
-    // Liberar la memoria del arreglo actual
+    // Liberar memoria previa
     delete[] elemento;
 
-    // Si la capacidad de la pila fuente es mayor que la de la pila destino, redimensionar
-    if (capacidad < p.capacidad) {
-        // Redimensionar el arreglo
-        capacidad = p.capacidad;
-        elemento = new Tipo[capacidad];
-    } else {
-        // Usar la capacidad original si la pila fuente no excede el tamaño de la pila destino
-        elemento = new Tipo[capacidad];
-    }
+    // Asignar nueva memoria si es necesario
+    capacidad = p.capacidad;
+    elemento = new Tipo[capacidad];
 
-    // Copiar los elementos de la pila fuente a la pila destino
+    // Copiar elementos y actualizar tope
     tope = p.tope;
     for (int i = 0; i <= tope; ++i) {
         elemento[i] = p.elemento[i];
@@ -79,12 +69,12 @@ Pila<Tipo>::~Pila() {
 /**
  * @brief Agrega un elemento a la pila.
  * @param valor Elemento a agregar.
- * @throw const char* Excepción si la pila está llena.
+ *
+ * Si la pila está llena, se redimensiona automáticamente.
  */
 template <typename Tipo>
 void Pila<Tipo>::Apilar(Tipo valor) {
     if (EstaLlena()) {
-        // Redimensionar si la pila está llena
         Redimensionar();
     }
     elemento[++tope] = valor;
@@ -138,8 +128,8 @@ int Pila<Tipo>::ElementosPila() const {
 }
 
 /**
- * @brief Obtiene la capacidad máxima de la pila.
- * @return Capacidad de la pila.
+ * @brief Obtiene la capacidad actual de la pila.
+ * @return Capacidad máxima de la pila.
  */
 template <typename Tipo>
 int Pila<Tipo>::CapacidadPila() const {
@@ -161,25 +151,22 @@ void Pila<Tipo>::Imprimir() const {
 }
 
 /**
- * @brief Redimensiona la pila.
+ * @brief Redimensiona la pila al duplicar su capacidad.
  *
- * Duplica la capacidad de la pila cuando esta se llena.
+ * Se llama automáticamente cuando la pila se llena.
  */
 template <typename Tipo>
 void Pila<Tipo>::Redimensionar() {
-    // Doblar la capacidad actual
     capacidad *= 2;
     Tipo* nuevoElemento = new Tipo[capacidad];
 
-    // Copiar los elementos existentes
+    // Copiar elementos existentes
     for (int i = 0; i <= tope; ++i) {
         nuevoElemento[i] = elemento[i];
     }
 
-    // Liberar el antiguo arreglo
+    // Liberar memoria antigua y actualizar puntero
     delete[] elemento;
-
-    // Actualizar el puntero al nuevo arreglo
     elemento = nuevoElemento;
 }
 

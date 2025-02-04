@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <complex>
 #include "../Headers/Pila.hpp"
 #include "../Headers/Vector.hpp"
 
@@ -57,7 +58,7 @@ int main()
 
         // Imprimir la pila de enteros
         pilaInt.Imprimir();
-        cout << "\n\n";
+        cout << "capacidad pila enteros: " << pilaInt.CapacidadPila() << endl;
 
         // Desapilar algunos elementos
         pilaInt.Desapilar();
@@ -78,7 +79,15 @@ int main()
         PilaEnteros.Apilar(1); 
         PilaEnteros.Apilar(1);
         PilaEnteros.Imprimir();
-        cout << "Capacidad pila: "<<PilaEnteros.CapacidadPila();
+        cout << "Capacidad pila: "<<PilaEnteros.CapacidadPila() << endl << endl;
+
+        cout << "Numeros complejos: " << endl;
+        Pila<complex<double>> PilaComplejos;
+        PilaComplejos.Apilar(complex<double>(3.0,4.0));
+        PilaComplejos.Apilar(complex<double>(1.0,-2.0));
+        PilaComplejos.Imprimir();
+        
+
         
     } catch (const char* mensaje) {
         cerr << "Error: " << mensaje << endl;

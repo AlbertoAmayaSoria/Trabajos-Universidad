@@ -96,5 +96,5 @@ private:
      */
     void Redim();
 };
-#include "../Templates/Pila.tpp
+#include "../Templates/Pila.tpp"
 #endif // PILA_HPP_INCLUDED

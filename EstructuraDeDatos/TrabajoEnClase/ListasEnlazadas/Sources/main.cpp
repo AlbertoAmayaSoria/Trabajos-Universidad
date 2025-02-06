@@ -7,7 +7,7 @@ Fecha: 04 de Febrero de 2025
 
 #include <iostream>
 #include "../Headers/Pila.hpp"
-#include "../Headers/Pila.hpp"
+//#include "../Headers/Pila.hpp"
 
 using namespace std;
 
@@ -22,9 +22,10 @@ int main()
         cout << "\n\n";
 
         otraPila = pilaInt;
-        pilaInt.Desapilar();
+        //pilaInt.Desapilar();
+        cout << "Pila 1: " << endl;
         pilaInt.Imprimir();
-        cout << endl;
+        cout << "Copia de la pila 1" <<endl;
         otraPila.Imprimir();
         cout << endl;
 

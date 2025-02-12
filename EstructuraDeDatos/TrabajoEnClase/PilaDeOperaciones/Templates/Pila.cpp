@@ -19,7 +19,7 @@ Pila<Tipo>::Pila() : numElem(0), tope(NULL) {}
  * @param p Pila de la que se copiarán los elementos.
  */
 template <typename Tipo>
-Pila<Tipo>::Pila(const Pila<Tipo>& p) : numEleme(0), tope(NULL) {
+Pila<Tipo>::Pila(const Pila<Tipo>& p) : numElem(0), tope(NULL) {
     *this = p;
 }
 

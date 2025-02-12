@@ -1,33 +1,28 @@
-/*
-Descripción: Programa que utiliza la clase Pila para redimensionarla al doble de su capacidad cuando se llena
-Autor: Amaya Soria Angel Alberto
-Fecha: 04 de Febrero de 2025
-*/
-
-
 #include <iostream>
-#include "../Headers/Pila.hpp"
-//#include "../Headers/Pila.hpp"
+#include "../Headers/Cola.hpp"
 
 using namespace std;
 
 int main()
 {
     try{
-        Pila<> pilaInt;
-        Pila<> otraPila;
-        pilaInt.Apilar(5);
-        pilaInt.Apilar(6);
-        pilaInt.Imprimir();
-        cout << "\n\n";
-
-        otraPila = pilaInt;
-        //pilaInt.Desapilar();
-        cout << "Pila 1: " << endl;
-        pilaInt.Imprimir();
-        cout << "Copia de la pila 1" <<endl;
-        otraPila.Imprimir();
+        Cola<> cola;
+        cola.Encolar(1);
+        cola.Encolar(2);
+        cola.Encolar(3);
+        cola.Encolar(4);
+        cout << "La cola original es: \n";
+        cola.Imprimir();
+        cout << "\n\n El nuevo cambio es :\nCola: ";
+        Cola<> colaCopia;
+        colaCopia = cola;
+        cola.Desencolar();
+        cola.Desencolar();
+        cola.Imprimir();
+        cout << "\nCopia de cola: ";
+        colaCopia.Imprimir();
         cout << endl;
+
 
 
 
@@ -36,7 +31,6 @@ int main()
     }catch(const char *mensaje){
         cerr << "\nError: " << mensaje << endl;
     }
-
 
     system("pause");
     return 0;

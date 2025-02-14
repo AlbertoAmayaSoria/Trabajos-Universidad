@@ -148,4 +148,4 @@ Cola<Tipo>& Cola<Tipo>::operator=(const Cola<Tipo>& c) {
     }
 
     return *this;
-}
+    }

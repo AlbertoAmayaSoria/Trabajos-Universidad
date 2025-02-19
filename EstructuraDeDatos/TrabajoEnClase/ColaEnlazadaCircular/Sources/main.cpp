@@ -11,6 +11,9 @@ int main()
 {
     //Despues de un tiempo random, encolar un numero y desencolar un numero bajo la misma premisa
     //tarea, apilar nombres con apellidos random
+
+    
+
     int tiempo = rand % (15 + 1);
     try{
         Cola<> cola;

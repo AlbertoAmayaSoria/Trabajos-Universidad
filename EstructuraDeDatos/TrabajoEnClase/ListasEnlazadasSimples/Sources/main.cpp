@@ -8,6 +8,7 @@ Fecha: 04 de Febrero de 2025
 //incluyir o eliminar elementos en una posicion especifica (trabajo realizado en clase 18/Febrero/2025)
 
 
+#include <complex>
 #include <iostream>
 #include "../Headers/ListasEnlazadasSimples.hpp"
 //#include "../Headers/Pila.hpp"
@@ -24,6 +25,14 @@ int main()
         }
         ListaInt.Imprimir();
 
+        cout << endl;
+
+        ListaInt.DesencolarInicio();
+        ListaInt.Imprimir();
+        ListaInt.Vaciar();
+        ListaInt.Imprimir();
+        ListaInt.EncolarFinal(5);
+        ListaInt.Imprimir();
 
 
 

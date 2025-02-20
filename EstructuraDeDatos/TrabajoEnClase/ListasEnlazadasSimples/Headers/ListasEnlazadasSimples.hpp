@@ -20,11 +20,15 @@ public:
 
     void EncolarInicio(Tipo valor);
 
-    void EncolarFInal(Tipo valor);
+    void EncolarFinal(Tipo valor);
 
     void EncolarEnPosicion(Tipo valor);
 
+    void DesencolarInicio();
+
     bool EstaVacia();
+
+    void Vaciar();
 
     void Imprimir();
     

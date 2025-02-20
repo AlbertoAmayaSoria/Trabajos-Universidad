@@ -10,7 +10,23 @@ template <typename Tipo = int>
 class Lista{
 public:
     
+    Lista();
 
+    Lista(const Lista<Tipo>& c);
+
+    ~Lista();
+
+    Lista<Tipo>& operator=(const Lista<Tipo>& c);
+
+    void EncolarInicio(Tipo valor);
+
+    void EncolarFInal(Tipo valor);
+
+    void EncolarEnPosicion(Tipo valor);
+
+    bool EstaVacia();
+
+    void Imprimir();
     
 
 private:

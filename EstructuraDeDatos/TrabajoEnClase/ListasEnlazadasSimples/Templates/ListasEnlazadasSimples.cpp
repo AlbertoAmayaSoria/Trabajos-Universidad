@@ -1,14 +1,10 @@
 #include <cstddef>
 #include <iostream>
 
-/**
- * @brief Constructor por defecto de la clase Lista.
- * 
- * Inicializa una Lista vacía, estableciendo el número de elementos en 0
- * y el puntero `tope` en NULL.
- */
+
 template <typename Tipo>
 Lista<Tipo>::Lista() : numElem(0), primero(NULL), tope(NULL) {}
+
 
 template <typename Tipo>
 Lista<Tipo>::Lista(const Lista<Tipo> &c) : numElem(0), primero(NULL), tope(NULL)
@@ -16,20 +12,73 @@ Lista<Tipo>::Lista(const Lista<Tipo> &c) : numElem(0), primero(NULL), tope(NULL)
     *this = c;
 }
 
+
 template <typename Tipo>
 Lista<Tipo>::~Lista()
 {
-    Vaciar();
+    Elemento* actual = primero;
+    while (actual != nullptr) {
+        Elemento* temp = actual;
+        actual = actual->siguiente;
+        delete temp;
+    }
+    primero = tope = nullptr;
+    numElem = 0;
 }
 
+
+/*template <typename Tipo>
+Lista<Tipo>& Lista<Tipo>::operator=(const Lista<Tipo>& c)
+{
+//hacer el operador igual
+}*/
+
+
 template <typename Tipo>
-void Lista<Tipo>::ApilarInicio(Tipo valor)
+void Lista<Tipo>::EncolarInicio(Tipo valor)
 {
     Elemento* nuevo = new Elemento;
     nuevo->valor = valor;
-    nuevo->siguiente = tope;
-    if(EstaVacia()) primero = nuevo;
-    else tope->siguiente = nuevo;
-    ultimo = nuevo;
+    nuevo->siguiente = primero; // Apunta al antiguo primero
+
+    if (EstaVacia()) {
+        tope = nuevo; // Si estaba vacía, tope y primero son el mismo
+    }
+
+    primero = nuevo; // El nuevo nodo es ahora el primero
     ++numElem;
+}
+
+
+/*template <typename Tipo>
+void Lista<Tipo>::EncolarFinal()
+{
+    
+}*/
+
+
+template <typename Tipo>
+bool Lista<Tipo>::EstaVacia()
+{
+    return numElem == 0;
+}
+
+
+template <typename Tipo>
+void Lista<Tipo>::Imprimir()
+{
+    if (EstaVacia()) {
+        std::cout << "Lista vacía\n";
+        return;
+    }
+
+    Elemento *porImprimir = primero;
+    std::cout << "Primero -> ";
+    
+    while (porImprimir != nullptr) {
+        std::cout << porImprimir->valor << ", ";
+        porImprimir = porImprimir->siguiente;
+    }
+
+    std::cout << "\b\b <- Último\n";
 }

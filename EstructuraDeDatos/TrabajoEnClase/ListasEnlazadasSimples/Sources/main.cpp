@@ -17,20 +17,12 @@ using namespace std;
 int main()
 {
     try{
-        Pila<> pilaInt;
-        Pila<> otraPila;
-        pilaInt.Apilar(5);
-        pilaInt.Apilar(6);
-        pilaInt.Imprimir();
-        cout << "\n\n";
-
-        otraPila = pilaInt;
-        //pilaInt.Desapilar();
-        cout << "Pila 1: " << endl;
-        pilaInt.Imprimir();
-        cout << "Copia de la pila 1" <<endl;
-        otraPila.Imprimir();
-        cout << endl;
+        Lista<int> ListaInt;
+        for(int i = 0; i < 10; ++i)
+        {
+        ListaInt.EncolarInicio(i);
+        }
+        ListaInt.Imprimir();
 
 
 

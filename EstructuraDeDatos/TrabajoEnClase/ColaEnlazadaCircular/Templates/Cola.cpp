@@ -124,7 +124,7 @@ void Cola<Tipo>::Imprimir() const {
 
     Elemento* porImprimir = ultimo->siguiente; // Primer elemento
     std::cout << "Primero -> ";
-    for (int i = 0; i < numElem+2; ++i) {
+    for (int i = 0; i < numElem; ++i) {
         std::cout << porImprimir->valor << ", ";
         porImprimir = porImprimir->siguiente;
     }

@@ -4,13 +4,13 @@
 #include <iostream>
 
 template <typename T>
-class LinkedList {
+class ListaDoblementeEnlazada {
 
 public:
-    LinkedList();
-    LinkedList(const LinkedList& otra);
-    ~LinkedList();
-    LinkedList& operator=(const LinkedList& otra);
+    ListaDoblementeEnlazada();
+    ListaDoblementeEnlazada(const ListaDoblementeEnlazada& otra);
+    ~ListaDoblementeEnlazada();
+    ListaDoblementeEnlazada& operator=(const ListaDoblementeEnlazada& otra);
     
 
     void insertarInicio(T valor);
@@ -44,15 +44,17 @@ public:
 private:
     struct Nodo {
         T dato;
+        Nodo* anterior;
         Nodo* siguiente;
-        Nodo(T valor) : dato(valor), siguiente(nullptr) {}
+        Nodo(T valor) : dato(valor), anterior(nullptr), siguiente(nullptr) {}
     };
 
     Nodo* cabeza;
+    Nodo* ultimo;
     size_t tamaño;
 };
 
-#include "../Templates/linkedList.tpp"
+#include "../Templates/ListaDoblementeEnlazada.tpp"
 
 #endif // LINKEDLIST_HPP
 

@@ -92,8 +92,12 @@ int main()
     ultimaPersona = listaDePersonas.obtenerUltimo();
     std::cout << "La ultima persona en la lista fue: " << ultimaPersona << std::endl;
     std::cout << "La lista al contrario: " << std::endl;
-    listaDePersonas.imprimirReversa(); 
-    
+    listaDePersonas.imprimirReversa();
+    listaDePersonas.insertarFinal("Rosa Godoi");
+    listaDePersonas.imprimir();
+    if(listaDePersonas.buscar("Rosa Godoi")){
+        std::cout << "Si llego Rosa";
+    } else std::cout << "No llego Rosa";
 
     return 0;
 }

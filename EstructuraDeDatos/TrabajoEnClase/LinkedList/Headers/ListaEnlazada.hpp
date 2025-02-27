@@ -4,57 +4,47 @@
 #include <iostream>
 
 template <typename T>
-class ListaDoblementeEnlazada {
+class ListaEnlazada {
 
 public:
-    ListaDoblementeEnlazada();
-    ListaDoblementeEnlazada(const ListaDoblementeEnlazada& otra);
-    ~ListaDoblementeEnlazada();
-    ListaDoblementeEnlazada& operator=(const ListaDoblementeEnlazada& otra);
-    
+    ListaEnlazada();
+    ListaEnlazada(const ListaEnlazada& otra);
+    ~ListaEnlazada();
+    ListaEnlazada& operator=(const ListaEnlazada& otra);
 
     void insertarInicio(T valor);
     void insertarFinal(T valor);
     void insertarPosicion(T valor, size_t pos);
-
 
     void eliminarInicio();
     void eliminarFinal();
     void eliminarPosicion(size_t pos);
     void eliminarValor(T valor);
 
-
     bool buscar(T valor);
-
 
     T obtenerPrimero() const;
     T obtenerUltimo() const;
     T obtenerEnPosicion(size_t posicion) const;
     int obtenerIndice(const T& valor) const;
-    
-    
-    
 
-    
     size_t obtenerTamaño() const;
-
 
     void imprimir() const;
 
 private:
     struct Nodo {
         T dato;
-        Nodo* anterior;
         Nodo* siguiente;
-        Nodo(T valor) : dato(valor), anterior(nullptr), siguiente(nullptr) {}
+        Nodo(T valor) : dato(valor), siguiente(nullptr) {}
     };
 
-    Nodo* cabeza;
-    Nodo* ultimo;
+    Nodo* primero;   // Apunta al primer nodo
+    Nodo* ultimo;    // Apunta al último nodo
     size_t tamaño;
 };
 
-#include "../Templates/ListaDoblementeEnlazada.tpp"
+#include "../Templates/ListaEnlazada.tpp"
 
 #endif // LINKEDLIST_HPP
 

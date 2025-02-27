@@ -91,6 +91,9 @@ int main()
     std::string ultimaPersona;
     ultimaPersona = listaDePersonas.obtenerUltimo();
     std::cout << "La ultima persona en la lista fue: " << ultimaPersona << std::endl;
+    std::cout << "La lista al contrario: " << std::endl;
+    listaDePersonas.imprimirReversa(); 
+    
 
     return 0;
 }

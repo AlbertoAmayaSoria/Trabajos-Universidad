@@ -1,53 +1,53 @@
 // Constructor
 template <typename T>
-ListaDoblementeEnlazada<T>::ListaDoblementeEnlazada() : cabeza(nullptr), ultimo(nullptr), tamaño(0) {
-    // Inicializa una lista vacía. La cabeza y el último nodo son nullptr,
+ListaEnlazada<T>::ListaEnlazada() : primero(nullptr), ultimo(nullptr), tamaño(0) {
+    // Inicializa una lista vacía. El primer nodo y el último nodo son nullptr,
     // y el tamaño es 0.
 }
 
 // Constructor de copias
 template <typename T>
-ListaDoblementeEnlazada<T>::ListaDoblementeEnlazada(const ListaDoblementeEnlazada& otra) : cabeza(nullptr), ultimo(nullptr), tamaño(0) {
+ListaEnlazada<T>::ListaEnlazada(const ListaEnlazada& otra) : primero(nullptr), ultimo(nullptr), tamaño(0) {
     // Usamos el operador de asignación para copiar los datos de otra lista.
     *this = otra; // Reutilizamos el operador de asignación
 }
 
 // Destructor
 template <typename T>
-ListaDoblementeEnlazada<T>::~ListaDoblementeEnlazada() {
+ListaEnlazada<T>::~ListaEnlazada() {
     // Liberamos la memoria de todos los nodos de la lista.
-    while (cabeza) {
-        Nodo* temp = cabeza;
-        cabeza = cabeza->siguiente;
+    while (primero) {
+        Nodo* temp = primero;
+        primero = primero->siguiente;
         delete temp; // Eliminamos el nodo actual
     }
 }
 
 // Sobrecarga del operador =
 template <typename T>
-ListaDoblementeEnlazada<T>& ListaDoblementeEnlazada<T>::operator=(const ListaDoblementeEnlazada& otra) {
+ListaEnlazada<T>& ListaEnlazada<T>::operator=(const ListaEnlazada& otra) {
     // Evitar autoasignación (si la lista se asigna a sí misma)
     if (this == &otra) return *this;
 
     // Liberamos la memoria de la lista actual
-    while (cabeza) {
-        Nodo* temp = cabeza;
-        cabeza = cabeza->siguiente;
+    while (primero) {
+        Nodo* temp = primero;
+        primero = primero->siguiente;
         delete temp;
     }
     tamaño = 0;
 
     // Copiamos los nodos de la lista "otra"
-    if (!otra.cabeza) {
-        cabeza = nullptr;
+    if (!otra.primero) {
+        primero = nullptr;
         ultimo = nullptr;
         return *this;
     }
 
     // Copiamos los nodos de la otra lista
-    cabeza = new Nodo(otra.cabeza->dato);  // Creamos el primer nodo
-    Nodo* actual = cabeza;
-    Nodo* otraActual = otra.cabeza->siguiente;
+    primero = new Nodo(otra.primero->dato);  // Creamos el primer nodo
+    Nodo* actual = primero;
+    Nodo* otraActual = otra.primero->siguiente;
 
     // Copiamos el resto de los nodos
     while (otraActual) {
@@ -66,14 +66,11 @@ ListaDoblementeEnlazada<T>& ListaDoblementeEnlazada<T>::operator=(const ListaDob
 
 // Insertar al inicio
 template <typename T>
-void ListaDoblementeEnlazada<T>::insertarInicio(T valor) {
+void ListaEnlazada<T>::insertarInicio(T valor) {
     // Creamos un nuevo nodo con el valor dado
     Nodo* nuevo = new Nodo(valor);
-    nuevo->siguiente = cabeza; // El siguiente del nuevo nodo apunta a la cabeza actual
-    if (cabeza) {
-        cabeza->anterior = nuevo; // Actualizamos el anterior de la cabeza
-    }
-    cabeza = nuevo; // La cabeza ahora apunta al nuevo nodo
+    nuevo->siguiente = primero; // El siguiente del nuevo nodo apunta al primero actual
+    primero = nuevo; // El primero ahora apunta al nuevo nodo
 
     // Si la lista estaba vacía, el último nodo también debe ser el nuevo
     if (!ultimo) {
@@ -85,14 +82,13 @@ void ListaDoblementeEnlazada<T>::insertarInicio(T valor) {
 
 // Insertar al final
 template <typename T>
-void ListaDoblementeEnlazada<T>::insertarFinal(T valor) {
+void ListaEnlazada<T>::insertarFinal(T valor) {
     Nodo* nuevo = new Nodo(valor); // Creamos un nuevo nodo con el valor dado
-    if (!cabeza) {
-        cabeza = nuevo;
-        ultimo = nuevo; // Si la lista está vacía, cabeza y último apuntan al nuevo nodo
+    if (!primero) {
+        primero = nuevo;
+        ultimo = nuevo; // Si la lista está vacía, primero y último apuntan al nuevo nodo
     } else {
         ultimo->siguiente = nuevo; // El siguiente del último nodo apunta al nuevo
-        nuevo->anterior = ultimo; // El anterior del nuevo nodo apunta al último nodo
         ultimo = nuevo; // El último nodo ahora es el nuevo
     }
     tamaño++; // Incrementamos el tamaño de la lista
@@ -100,7 +96,7 @@ void ListaDoblementeEnlazada<T>::insertarFinal(T valor) {
 
 // Insertar en una posición específica
 template <typename T>
-void ListaDoblementeEnlazada<T>::insertarPosicion(T valor, size_t pos) {
+void ListaEnlazada<T>::insertarPosicion(T valor, size_t pos) {
     if (pos > tamaño) {
         std::cerr << "Posición inválida\n";
         return;
@@ -114,7 +110,7 @@ void ListaDoblementeEnlazada<T>::insertarPosicion(T valor, size_t pos) {
 
     // Creamos el nuevo nodo
     Nodo* nuevo = new Nodo(valor);
-    Nodo* temp = cabeza;
+    Nodo* temp = primero;
 
     // Buscamos el nodo en la posición dada
     for (size_t i = 0; i < pos - 1; ++i) {
@@ -123,11 +119,7 @@ void ListaDoblementeEnlazada<T>::insertarPosicion(T valor, size_t pos) {
 
     // Insertamos el nuevo nodo en la posición correcta
     nuevo->siguiente = temp->siguiente;
-    if (temp->siguiente) {
-        temp->siguiente->anterior = nuevo; // Actualizamos el anterior del siguiente nodo
-    }
-    temp->siguiente = nuevo; // El nodo actual apunta al nuevo nodo
-    nuevo->anterior = temp; // El nuevo nodo apunta al nodo actual
+    temp->siguiente = nuevo;
 
     // Si se insertó al final, actualizamos el puntero último
     if (!nuevo->siguiente) {
@@ -141,16 +133,14 @@ void ListaDoblementeEnlazada<T>::insertarPosicion(T valor, size_t pos) {
 
 // Eliminar el primer nodo
 template <typename T>
-void ListaDoblementeEnlazada<T>::eliminarInicio() {
-    if (!cabeza) return; // Si la lista está vacía, no hacemos nada
+void ListaEnlazada<T>::eliminarInicio() {
+    if (!primero) return; // Si la lista está vacía, no hacemos nada
 
-    // Eliminamos la cabeza y actualizamos el puntero cabeza
-    Nodo* temp = cabeza;
-    cabeza = cabeza->siguiente;
+    // Eliminamos el primero y actualizamos el puntero primero
+    Nodo* temp = primero;
+    primero = primero->siguiente;
 
-    if (cabeza) {
-        cabeza->anterior = nullptr; // Actualizamos el anterior de la nueva cabeza
-    } else {
+    if (!primero) {
         ultimo = nullptr; // Si la lista se vacía, el último también debe ser nullptr
     }
 
@@ -160,20 +150,24 @@ void ListaDoblementeEnlazada<T>::eliminarInicio() {
 
 // Eliminar el último nodo
 template <typename T>
-void ListaDoblementeEnlazada<T>::eliminarFinal() {
-    if (!cabeza) return; // Si la lista está vacía, no hacemos nada
+void ListaEnlazada<T>::eliminarFinal() {
+    if (!primero) return; // Si la lista está vacía, no hacemos nada
 
-    if (!cabeza->siguiente) {
-        // Si la lista tiene un solo nodo, eliminamos la cabeza y vaciamos la lista
-        delete cabeza;
-        cabeza = nullptr;
+    if (!primero->siguiente) {
+        // Si la lista tiene un solo nodo, eliminamos el primero y vaciamos la lista
+        delete primero;
+        primero = nullptr;
         ultimo = nullptr;
     } else {
         // Eliminamos el último nodo
-        Nodo* temp = ultimo;
-        ultimo = ultimo->anterior;
-        ultimo->siguiente = nullptr; // Actualizamos el siguiente del nuevo último
-        delete temp; // Liberamos la memoria del nodo eliminado
+        Nodo* temp = primero;
+        while (temp->siguiente != ultimo) {
+            temp = temp->siguiente; // Nos movemos hasta el penúltimo nodo
+        }
+
+        delete ultimo;
+        temp->siguiente = nullptr; // El penúltimo nodo ahora es el último
+        ultimo = temp; // Actualizamos el puntero último
     }
 
     tamaño--; // Decrementamos el tamaño de la lista
@@ -181,7 +175,7 @@ void ListaDoblementeEnlazada<T>::eliminarFinal() {
 
 // Eliminar por posición
 template <typename T>
-void ListaDoblementeEnlazada<T>::eliminarPosicion(size_t pos) {
+void ListaEnlazada<T>::eliminarPosicion(size_t pos) {
     if (pos >= tamaño) {
         std::cerr << "Posición inválida\n";
         return;
@@ -193,17 +187,13 @@ void ListaDoblementeEnlazada<T>::eliminarPosicion(size_t pos) {
     }
 
     // Buscamos el nodo en la posición dada
-    Nodo* temp = cabeza;
+    Nodo* temp = primero;
     for (size_t i = 0; i < pos - 1; ++i) {
         temp = temp->siguiente;
     }
 
     Nodo* nodoAEliminar = temp->siguiente;
     temp->siguiente = nodoAEliminar->siguiente; // Conectamos el anterior con el siguiente del nodo a eliminar
-    if (nodoAEliminar->siguiente) {
-        nodoAEliminar->siguiente->anterior = temp; // Actualizamos el anterior del siguiente nodo
-    }
-
     if (!temp->siguiente) {
         // Si se eliminó el último, actualizamos el puntero último
         ultimo = temp;
@@ -215,16 +205,16 @@ void ListaDoblementeEnlazada<T>::eliminarPosicion(size_t pos) {
 
 // Eliminar por valor
 template <typename T>
-void ListaDoblementeEnlazada<T>::eliminarValor(T valor) {
-    if (!cabeza) return; // Si la lista está vacía, no hacemos nada
+void ListaEnlazada<T>::eliminarValor(T valor) {
+    if (!primero) return; // Si la lista está vacía, no hacemos nada
 
-    if (cabeza->dato == valor) {
+    if (primero->dato == valor) {
         eliminarInicio();
         return;
     }
 
     // Buscamos el nodo con el valor dado
-    Nodo* temp = cabeza;
+    Nodo* temp = primero;
     while (temp->siguiente && temp->siguiente->dato != valor) {
         temp = temp->siguiente;
     }
@@ -233,10 +223,6 @@ void ListaDoblementeEnlazada<T>::eliminarValor(T valor) {
         // Si encontramos el nodo, lo eliminamos
         Nodo* nodoAEliminar = temp->siguiente;
         temp->siguiente = nodoAEliminar->siguiente; // Conectamos el anterior con el siguiente
-        if (nodoAEliminar->siguiente) {
-            nodoAEliminar->siguiente->anterior = temp; // Actualizamos el anterior del siguiente nodo
-        }
-
         if (!temp->siguiente) {
             // Si se eliminó el último, actualizamos el puntero último
             ultimo = temp;
@@ -251,8 +237,8 @@ void ListaDoblementeEnlazada<T>::eliminarValor(T valor) {
 
 // Buscar un elemento
 template <typename T>
-bool ListaDoblementeEnlazada<T>::buscar(T valor) {
-    Nodo* temp = cabeza;
+bool ListaEnlazada<T>::buscar(T valor) {
+    Nodo* temp = primero;
     while (temp) {
         if (temp->dato == valor) return true; // Si encontramos el valor, retornamos true
         temp = temp->siguiente; // Continuamos con el siguiente nodo
@@ -264,16 +250,16 @@ bool ListaDoblementeEnlazada<T>::buscar(T valor) {
 
 // Obtener el primer elemento de la lista
 template <typename T>
-T ListaDoblementeEnlazada<T>::obtenerPrimero() const {
-    if (!cabeza) {
+T ListaEnlazada<T>::obtenerPrimero() const {
+    if (!primero) {
         throw std::out_of_range("La lista está vacía."); // Lanzamos excepción si la lista está vacía
     }
-    return cabeza->dato; // Retornamos el dato de la cabeza
+    return primero->dato; // Retornamos el dato del primer nodo
 }
 
 // Obtener el último elemento de la lista
 template <typename T>
-T ListaDoblementeEnlazada<T>::obtenerUltimo() const {
+T ListaEnlazada<T>::obtenerUltimo() const {
     if (!ultimo) {
         throw std::out_of_range("La lista está vacía."); // Lanzamos excepción si la lista está vacía
     }
@@ -282,12 +268,12 @@ T ListaDoblementeEnlazada<T>::obtenerUltimo() const {
 
 // Obtener un elemento en una posición específica
 template <typename T>
-T ListaDoblementeEnlazada<T>::obtenerEnPosicion(size_t posicion) const {
+T ListaEnlazada<T>::obtenerEnPosicion(size_t posicion) const {
     if (posicion >= tamaño) {
         throw std::out_of_range("Índice fuera de rango."); // Lanzamos excepción si la posición está fuera de rango
     }
 
-    Nodo* actual = cabeza;
+    Nodo* actual = primero;
     for (size_t i = 0; i < posicion; ++i) {
         actual = actual->siguiente; // Nos movemos hasta la posición deseada
     }
@@ -297,8 +283,8 @@ T ListaDoblementeEnlazada<T>::obtenerEnPosicion(size_t posicion) const {
 
 // Obtener el índice de un elemento en la lista
 template <typename T>
-int ListaDoblementeEnlazada<T>::obtenerIndice(const T& valor) const {
-    Nodo* actual = cabeza;
+int ListaEnlazada<T>::obtenerIndice(const T& valor) const {
+    Nodo* actual = primero;
     int indice = 0;
 
     while (actual) {
@@ -316,7 +302,7 @@ int ListaDoblementeEnlazada<T>::obtenerIndice(const T& valor) const {
 
 // Obtener tamaño
 template <typename T>
-size_t ListaDoblementeEnlazada<T>::obtenerTamaño() const {
+size_t ListaEnlazada<T>::obtenerTamaño() const {
     return tamaño; // Retornamos el tamaño de la lista
 }
 
@@ -324,10 +310,10 @@ size_t ListaDoblementeEnlazada<T>::obtenerTamaño() const {
 
 // Imprimir lista
 template <typename T>
-void ListaDoblementeEnlazada<T>::imprimir() const {
-    Nodo* temp = cabeza;
+void ListaEnlazada<T>::imprimir() const {
+    Nodo* temp = primero;
     while (temp) {
-        std::cout << temp->dato << " <-> "; // Imprimimos el dato del nodo y el enlace a siguiente
+        std::cout << temp->dato << " -> "; // Imprimimos el dato del nodo y el enlace a siguiente
         temp = temp->siguiente;
     }
     std::cout << "NULL\n"; // Imprimimos NULL al final para indicar que hemos llegado al final de la lista

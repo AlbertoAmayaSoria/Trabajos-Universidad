@@ -7,7 +7,7 @@
 #include <thread>
 #include <chrono>
 
-#include "../Headers/ListaDoblementeEnlazada.hpp"
+#include "../Headers/ListaEnlazada.hpp"
 
 // Lista de nombres
 std::vector<std::string> nombres = {"Ana", "Pablo", "Laura", "Javier", "Marta", "Luis", "Sofia", "Juan", "Carlos", "Elena", 
@@ -58,7 +58,7 @@ int main()
     ListaDos.eliminarInicio();
     ListaDos.imprimir();*/
 
-    ListaDoblementeEnlazada<std::string> listaDePersonas;
+    ListaEnlazada<std::string> listaDePersonas;
     int tiempoTotal = 5;  // 120 segundos
     int tiempoTranscurrido = 0;
 

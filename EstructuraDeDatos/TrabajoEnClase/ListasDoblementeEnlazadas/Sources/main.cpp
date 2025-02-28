@@ -98,6 +98,8 @@ int main()
     if(listaDePersonas.buscar("Rosa Godoi")){
         std::cout << "Si llego Rosa";
     } else std::cout << "No llego Rosa";
+    std::string persona = listaDePersonas.obtenerEnPosicion(4);
+    std::cout << persona;
 
     return 0;
 }

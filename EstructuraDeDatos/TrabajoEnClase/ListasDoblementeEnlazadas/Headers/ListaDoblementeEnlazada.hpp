@@ -57,7 +57,7 @@ private:
     size_t tamaño;   // Tamaño de la lista
 };
 
-// Definición de la plantilla de la clase fuera del encabezado
+
 #include "../Templates/ListaDoblementeEnlazada.tpp"
 
 #endif // LINKEDLIST_HPP

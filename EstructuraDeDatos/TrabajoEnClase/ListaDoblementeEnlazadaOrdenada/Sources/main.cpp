@@ -7,7 +7,7 @@
 #include <thread>
 #include <chrono>
 
-#include "../Headers/ListaDoblementeEnlazada.hpp"
+#include "../Headers/ListaDoblementeEnlazadaOrdenada.hpp"
 
 // Lista de nombres
 std::vector<std::string> nombres = {"Ana", "Pablo", "Laura", "Javier", "Marta", "Luis", "Sofia", "Juan", "Carlos", "Elena", 
@@ -29,7 +29,7 @@ std::vector<std::string> apellidos = {"García", "López", "Martínez", "Pérez"
 std::string generarNombreAleatorio();
 int main()
 {
-    /*ListaDoblementeEnlazada<int> Lista;
+    /*ListaDoblementeEnlazadaOrdenada<int> Lista;
     for(int i = 0; i < 10; ++i)
     {
         Lista.insertarInicio(i+1);
@@ -44,7 +44,7 @@ int main()
     Lista.imprimir();
 
     std::cout << "___________________________________________________" << std::endl;
-    ListaDoblementeEnlazada<int> ListaDos;
+    ListaDoblementeEnlazadaOrdenada<int> ListaDos;
     for(int i = 0; i < 10; ++i)
     {
         ListaDos.insertarFinal(i+1);
@@ -58,7 +58,7 @@ int main()
     ListaDos.eliminarInicio();
     ListaDos.imprimir();*/
 
-    ListaDoblementeEnlazada<std::string> listaDePersonas;
+    ListaDoblementeEnlazadaOrdenada<std::string> listaDePersonas;
     int tiempoTotal = 5;  // 120 segundos
     int tiempoTranscurrido = 0;
 

@@ -5,17 +5,17 @@
 #include <stdexcept> // Para manejar excepciones
 
 template <typename T>
-class ListaDoblementeEnlazada {
+class ListaDoblementeEnlazadaOrdenada {
 
 public:
     // Constructor
-    ListaDoblementeEnlazada();
+    ListaDoblementeEnlazadaOrdenada();
     // Constructor de copia
-    ListaDoblementeEnlazada(const ListaDoblementeEnlazada& otra);
+    ListaDoblementeEnlazadaOrdenada(const ListaDoblementeEnlazadaOrdenada& otra);
     // Destructor
-    ~ListaDoblementeEnlazada();
+    ~ListaDoblementeEnlazadaOrdenada();
     // Sobrecarga del operador =
-    ListaDoblementeEnlazada& operator=(const ListaDoblementeEnlazada& otra);
+    ListaDoblementeEnlazadaOrdenada& operator=(const ListaDoblementeEnlazadaOrdenada& otra);
 
     // Métodos de inserción
     void insertarInicio(T valor);
@@ -58,7 +58,7 @@ private:
 };
 
 
-#include "../Templates/ListaDoblementeEnlazada.tpp"
+#include "../Templates/ListaDoblementeEnlazadaOrdenada.tpp"
 
 #endif // LINKEDLIST_HPP
 

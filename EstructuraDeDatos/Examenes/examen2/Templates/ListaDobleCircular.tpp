@@ -212,12 +212,13 @@ void ListaDobleCircular<T>::imprimirAdelante() {
         return;
     }
 
+    //std::cout << "->";
     Nodo* actual = cabeza;
     do {
-        std::cout << actual->dato << " ";
+        std::cout << actual->dato << ", ";
         actual = actual->siguiente;
     } while (actual != cabeza);
-    std::cout << std::endl;
+    std::cout << "\b\b " <<std::endl;
 }
 
 /**
@@ -229,12 +230,13 @@ void ListaDobleCircular<T>::imprimirReversa() {
         std::cout << "La lista está vacía." << std::endl;
         return;
     }
-
+    
+    //std::cout << "->";
     Nodo* actual = cabeza->anterior;
     do {
-        std::cout << actual->dato << " ";
+        std::cout << actual->dato << ", ";
         actual = actual->anterior;
     } while (actual != cabeza->anterior);
-    std::cout << std::endl;
+    std::cout << "\b\b " << std::endl;
 }
 

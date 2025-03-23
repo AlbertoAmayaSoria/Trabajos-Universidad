@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
     try{
-        Pila<int> miPila;
+        Pila<int> miPila, pila;
 
         if(miPila.EstaVacia()) cout << "La pila est\240 vac\241a\n";
         else                   cout << "La pila no est\240 vac\241a\n";
@@ -32,6 +32,12 @@ int main()
         cout << "\n\n";
 
         miPila.Vaciar();
+
+        for(int i = 0; i < 10; ++i){
+            pila.Apilar(i);
+        }
+
+        pila.Imprimir();
 
         miPila.Desapilar();
 

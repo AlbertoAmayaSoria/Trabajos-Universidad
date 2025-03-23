@@ -83,7 +83,7 @@ void Pila<Tipo>::Imprimir() const
     for(int i = 0; i <= tope; ++i){
         std::cout << elemento[i] << ", ";
     }
-    std::cout << "\b\b <- TOPE";
+    std::cout << "\b\b <- TOPE" << std::endl;
 }
 //************************************************************************************************
 template <typename Tipo>

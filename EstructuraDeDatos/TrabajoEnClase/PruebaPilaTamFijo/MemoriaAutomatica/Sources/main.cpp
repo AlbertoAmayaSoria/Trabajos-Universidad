@@ -52,12 +52,5 @@ int main()
         cerr << "Error: " << mensaje << endl;
     }
 
-
-
-
-
-
-
-
     return 0;
 }

@@ -204,3 +204,14 @@
 
 
 ;;------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.24
+;;  (every? pred lst) devuelve #f si algún elemento de lst no satisface pred, y devuelve #t en caso contrario.
+    
+    (define every?
+      (lambda (pred lst)
+        (if (null? lst)
+            #t                           ; Caso base, si la lista esta vacía todos cumplen
+            (if (pred (car lst))         ; El primer elemento cumple con el predicado?
+                (every? pred (cdr lst))  ; Si lo cumple, seguimos con el resto
+                #f))))                   ; Si no lo cumple, devolvemos #f
+

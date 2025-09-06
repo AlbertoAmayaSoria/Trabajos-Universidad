@@ -164,11 +164,16 @@
 ;;  subst : sym x sym x s-list → s-list
     (define subst
       (lambda (new old slist)
-        (if (null? slist) '()
-            (cons (if (symbol? (car slist))
-                      (if (eqv? (car slist) old) new (car slist))
-                      (subst new old (car slist)))
-                  (subst new old (car slist))))))
+        (if (null? slist) 
+            '()                                ;  Caso base: lista vacía → devuelve lista vacía
+            (cons 
+              (if (symbol? (car slist))        ;  Revisamos el primer elemento de la lista
+                  (if (eqv? (car slist) old)   ;  Si es un símbolo, lo comparamos con "old"
+                      new                      ;  - Si coincide con "old", lo reemplazamos por "new"
+                      (car slist))             ;  - Si no coincide, lo dejamos igual
+                  (subst new old (car slist))) ;  Si el primer elemento es una sublista, recursión dentro
+              (subst new old (cdr slist))))))  ;  Luego seguimos procesando el resto de la lista
+
 
 ;;------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.18

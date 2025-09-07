@@ -297,10 +297,35 @@
 ;;
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.15
+;;  
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.16
+;;  (invert lst), donde lst es una lista de listas de 2 elementos (listas de longitud dos), devuelve una lista con cada sublista de 2 elementos invertida.
+;;
+    (define (invert slist)
+      (if (null? slist)                       ; si la lista está vacía
+          '()                                 ; devolvemos lista vacía
+          (cons (list (car (cdr (car slist))) ; invertimos la primera sublista
+                                              ; (car slist) -> primer sublista
+                                              ; (cdr (car slist)) -> devuelve la lista sin el primer elemento
+                                              ; (car (cdr (car slist))) toma el primer elemento de la sublista (el que era el primero)
+                                              ;
+                      (car (car slist)))      ; primer elemento
+                                              ; (car slist) -> toma la primer sublista
+                                              ; (car (car slist)) -> devuelve el primer elemento de esa sublista
+                (invert (cdr slist)))))       ; recursión sobre el resto
+
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.17
+;;  (down lst) pone paréntesis alrededor de cada elemento de nivel superior de lst.
+      (define down
+        (lambda (lst)
+          (if (null? lst)                 ; caso base
+              '()
+              (cons (list (car lst))      ; envuelve el primero (x)
+                                          ; (car slist) -> toma el primer elemento/sublista
+                                          ; (list (car slist)) -> Crea una nueva sublista con el primer elemento de la lista "envolviendo a nivel superior" el elemento
+                    (down (cdr lst))))))  ; Recorre el resto de la lista
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.18
 ;;  (Swapper s1 s2 slist) devuelve una lista igual que slist, pero con todas las ocurrencias de s1 reemplazadas por s2 y todas las ocurrencias de s2 reemplazadas por s1

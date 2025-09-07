@@ -155,6 +155,86 @@
 ;;
 ;;
 ;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.6
+;;  Si revertimos el orden de las pruebas en nth-element, ¿qué saldría mal?
+;;  
+;;    Si se invierte el orden de las pruebas en nth-element:
+;;    Primero se intenta hacer (car lst) aunque lst = ()
+;;    esto produce un error: car de la lista vacía
+;;
+;;    Ejemplo de problema:
+;;    (nth-element '() 0)
+;;    Aquí n = 0 pero la lista está vacía.
+;;    La función entra directo a (car lst) sin comprobar antes si es null?.
+;;    Resultado: error de Scheme ("car de lista vacía").
+;;
+;;    Otro caso:
+;;    (nth-element-bad '(a) 1)
+;;    Primera llamada: n ≠ 0 y la lista no está vacía,
+;;    entonces hace recursión sobre (cdr '(a)) = ().
+;;    Segunda llamada: ahora n = 0 pero lst = (),
+;;    intenta hacer (car ()) y falla.
+;;    Resultado: error por aplicar car a una lista vacía.
+;;
+;;    ;;Version con el orden invertido:
+      (define nth-element-bad
+        (lambda (lst n)
+          (cond
+            [(zero? n) (car lst)]     ;;intenta car antes de revisar null?// EROR//
+            [(null? lst) (error "lista vacia")]
+            [else (nth-element-bad (cdr lst) (sub1 n))])))
+;;    
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.7
+;;  El mensaje de error de nth-element no es informativo. 
+;;  Reescribe nth-element de manera que produzca un mensaje 
+;;  de error más informativo, como “(a bc) no tiene 8 elementos.”
+;;
+    (define (elemento-n-aux lista-original lista n-original n)
+      (cond ((null? lista)
+             (lista-demasiado-corta lista-original n-original))
+        ((zero? n)
+         (first lista))
+        (else
+          (elemento-n-aux lista-original (rest lista) n-original (- n 1)))))
+
+    (define (elemento-n lista n)
+      (elemento-n-aux lista lista n n))
+
+    (define (lista-demasiado-corta lista n)
+      (error 'lista-demadiado-corta
+             "~a no tiene ~a ~a"
+             lista (+n 1)
+             (if (zero? n) "elemento" "elementos")))
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.8
+;;  En la definición de remove-first, si la última línea se reemplazara
+;;  por (remove-first s (cdr los)), ¿qué función calcularía el procedimiento
+;;  resultante? Proporciona el contrato, incluyendo la declaración de uso, 
+;;  para el procedimiento revisado.
+;;
+      (define remove-first
+        (lambda (s los)
+          (if (null? los)
+              '()
+              (if (eqv? (car los) s)
+                  (cdr los)
+                  (remove-first s (cdr los))))))
+;;  Lo que sucede es que al eliminar cons, estamos eliminando los elementos antes de y la primer ocurrencia del valor en caso de que se encuentre para devolver la lista despues del valor, si no se encuentra el valor se eliminan todos los elementos y se devuelve una lista vacia.
+
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.9
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.10
+;;  Normalmente usamos “or” para significar “o inclusivo”. ¿Qué otros significados puede tener “or”?
+;;    Puede ser uno u otro elemento OR, o un elemento exclusivo de dos XOR
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.11
+;;  En la última línea de subst-in-s-exp, la recursión se hace sobre sexp y no sobre una subestructura más pequeña. ¿Por qué se garantiza que la recursión terminará?
+;;    Cada vez que se subst se llama, trabaja con el cdr de la lista, 
+;;    que es más pequeño, eventualmente se llega a la lista vacía. 
+;;    En el caso de los simbolos, se toma una desición (ya no hay recursión)
+;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.12
 ;;  Eliminar la única llamada a subst-in-s-exp dentro de subst remplazandolo por su definición y simplificando el procedimiento resultante. El resultado será una versión de subst que no necesite subst-in-s-exp.
 ;;  Esta técica es llamada inlining (o "expansión en linea") y es utilizada por los compiladores para optimizar código.
@@ -176,6 +256,52 @@
 
 
 ;;------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.13
+;;  En nuestro ejemplo, comenzamos eliminando la estrella de Kleene en la gramática para S-list. Escribe subst siguiendo la gramática original usando map.
+;;
+;;    Propósito: reemplazar cada aparición del símbolo "old"
+;;    con el símbolo "new" en una s-list.
+;;    La solución utiliza recursión y map para recorrer listas 
+;;    que pueden ser anidadas.
+;;    
+
+      ;;Definición principal, reemplazamos todas las ocurrencias de `old` por `new` en una s-list.
+      (define (subst new old slist)
+        ;;Usa `map` para aplicar la transformación a cada elemento de la lista.
+        ;;Esto evita tener que escribir explícitamente la recursión aquí.
+        (map (lambda (sexp) (subst-in-s-exp new old sexp)) slist))
+
+      ;;Función auxiliar: procesa un símbolo o una sublista.
+      (define (subst-in-s-exp new old sexp)
+        (cond
+          ;; Caso 1: si `sexp` es un símbolo, verificamos si coincide con `old`.
+          ;; En ese caso lo reemplazamos por `new`; si no, lo dejamos igual.
+          ((symbol? sexp) (if (eqv? sexp old) new sexp))
+
+          ;; Caso 2: si `sexp` no es un símbolo, asumimos que es una lista (s-list).
+          ;; Aplicamos recursión llamando otra vez a `subst` sobre esa lista.
+          (else (subst new old sexp))))
+
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.14
+;;  Dada la suposición 0 ≤ n < length(v), demuestra que partialvector-sum es correcto.
+;;
+;;    Partimos de la suposición 0 ≤ n < length(v), esto nos garantiza que el vector v tiene al menos 1 elemento
+;;    
+;;    aplicamos induccion sobre n
+;;    Caso base 
+;;    partial-vector-sum(v,n) = vector-ref v 0 = v_0
+;;    La suma de indices desde 0 hasta 0 es v_0 
+;;    Por lo tanto, la propiedad se cumple para n = 0
+;;    
+;;
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.15
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.16
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.17
+;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.18
 ;;  (Swapper s1 s2 slist) devuelve una lista igual que slist, pero con todas las ocurrencias de s1 reemplazadas por s2 y todas las ocurrencias de s2 reemplazadas por s1
 
@@ -200,10 +326,20 @@
 
           ;;  En cualquier otro caso se queda igual
           (else
-            (cons s1 (car slist) (swapper s1 s2 (cdr slist)))))))
+            (cons (car slist) (swapper s1 s2 (cdr slist)))))))
 
 
 ;;------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.19
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.20
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.21
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.22
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.23
+;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.24
 ;;  (every? pred lst) devuelve #f si algún elemento de lst no satisface pred, y devuelve #t en caso contrario.
     
@@ -214,4 +350,33 @@
             (if (pred (car lst))         ; El primer elemento cumple con el predicado?
                 (every? pred (cdr lst))  ; Si lo cumple, seguimos con el resto
                 #f))))                   ; Si no lo cumple, devolvemos #f
+
+;;------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.25
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.26
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.27
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.28
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.29
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.30
+;;  (sort/predicate pred loi) devuelve una lista de elementos ordenados segun el predicado pred
+    
+    (define 
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.31
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.32
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.33
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.34
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.35
+;;-------------------------------------------------------------------------------------------------------------------
+;;Ejercicio 1.36
+
 

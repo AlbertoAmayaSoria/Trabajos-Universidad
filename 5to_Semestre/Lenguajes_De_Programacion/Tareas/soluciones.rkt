@@ -356,8 +356,21 @@
 
 ;;------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.19
+;;  (list-set lst n x) devuelve una lista como lst, excepto que el n-ésimo elemento, usando indexación basada en cero, es x.
+
+  (define (list-set lst n x)
+    (if (null? lst)
+        (error "Lista demasiado corta")  ; caso base: lista vacía
+        (if (zero? n)
+            (cons x (cdr lst))          ; reemplaza el elemento en la posición n
+            (cons (car lst)             ; mantiene el primer elemento
+                  (list-set (cdr lst) (- n 1) x))))) ; recursión sobre el resto
+
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.20
+;;  (count-occurrences s slist) devuelve el número de ocurrencias de s en slist.
+    
+    
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.21
 ;;-------------------------------------------------------------------------------------------------------------------

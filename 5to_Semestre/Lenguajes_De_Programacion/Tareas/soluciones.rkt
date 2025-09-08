@@ -369,14 +369,41 @@
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.20
 ;;  (count-occurrences s slist) devuelve el número de ocurrencias de s en slist.
-    
+   (define (count-ocurrences s slist)
+     (cond
+       ((null? slist) 0)                          ; Caso base, lista vacía
+       ((equal? (car slist) s)                    ; Si el primer elemento es igual a s
+        (+ 1 (count-ocurrences s (cdr slist))))   ; Sumamos 1 y seguimos con la lista
+       (else (count-ocurrences s (cdr slist)))))  ; Si no, seguimos con la lista
     
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.21
+;;  
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.22
+;;  (filter-in pred lst) devuelve la lista de aquellos elementos en lst que satisfacen el predicado pred.
+
+    (define (filter-in pred slist)
+      (cond
+        ((null? slist) '())                               ; Caso base de lista vacía, regresa lista vacía
+
+        ((pred (car slist))                               ; Si pred es igual al primer elemento
+         (cons (car slist) (filter-in pred (cdr slist)))) ; Consrevamos el primer elemento de la lista y aplicamos recursion sobre el resto de la lista
+        (else                                             ; Si no
+          (filter-in pred (cdr slist)))))                 ; Aplicamos recursion sobre el resto de la lista
+
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.23
+;;  (list-index pred lst) devuelve la posición (basada en 0) del primer elemento de lst que satisface el predicado pred. Si ningún elemento de lst satisface el predicado, entonces list-index devuelve #f.
+
+    (define (list-index pred lst)
+      (define (aux lst pos)                     ; definimos aux para poder contar la posición con "pos" en caso de encontrar el elememto que cumple pred
+        (cond
+          [(null? lst) #f]                      ; si la lista está vacía devolvemos falso
+          [(pred (car lst)) pos]                ; si cumple el predicado devolvemos la posición
+          [else (aux (cdr lst) (+ pos 1))]))    ; sino seguimos con el resto de la lista
+      (aux lst 0))
+
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.24
 ;;  (every? pred lst) devuelve #f si algún elemento de lst no satisface pred, y devuelve #t en caso contrario.
@@ -391,19 +418,66 @@
 
 ;;------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.25
+;;  (exists? pred lst) devuelve #t si algún elemento de lst satisface el predicado pred, y devuelve #f en caso contrario.
+
+    (define (exist? pred slist)
+      (cond
+        ((null? slist) #f)
+        ((pred (car slist)) #t)
+        (else
+          (exist? pred (cdr slist)))))
+
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.26
+;;  (up lst) elimina un par de paréntesis de cada elemento de nivel superior de lst.
+;;  Si un elemento de nivel superior no es una lista, se incluye en el resultado tal como está.
+;;  El valor de (up (down lst)) es equivalente a lst, pero (down (up lst)) no es necesariamente lst.
+
+    (define (up lst)
+      (cond
+        ((null? lst) '())                   ; Caso base, devolvemos lista vacía
+
+        ((list? (car lst))                  ; Si el primer elemento es una lista
+        (append (car lst) (up (cdr lst))))  ; "Desempaquetamos" la sublista con append y unimos con el resultado de manera recursiva
+
+        (else                               ; El primer elemento no es lista
+        (cons (car lst) (up (cdr lst))))))  ; Dejamos el elemento como esta y continuamos con el resto de la lista
+
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.27
+;;  (flatten slist) devuelve una lista de los símbolos contenidos en slist en el orden en que aparecen cuando se imprime slist. Intuitivamente, flatten elimina todos los paréntesis internos de su argumento.
+
+    
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.28
+;;  (merge loi1 loi2), donde loi1 y loi2 son listas de enteros ordenadas de manera ascendente, devuelve una lista ordenada con todos los enteros de loi1 y loi2.
+
+    (define (merge loi1 loi2)
+      (cond
+        ((null? loi1) loi2)                           ; si la primera lista está vacía
+        ((null? loi2) loi1)                           ; si la segunda lista está vacía
+        ((<= (car loi1) (car loi2))                   ; si el primero de loi1 es menor o igual
+        (cons (car loi1) (merge (cdr loi1) loi2)))    ; lo agregamos y seguimos recursivamente
+        (else
+        (cons (car loi2) (merge loi1 (cdr loi2))))))  ; si no, agregamos el primero de loi2
+
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.29
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.30
 ;;  (sort/predicate pred loi) devuelve una lista de elementos ordenados segun el predicado pred
     
-    (define 
+    (define (sort/predicate pred loi)
+      (cond
+        ((null? loi) '())  ; caso base: lista vacía
+        (else                               ; caso recursivo si la lista no está vacía
+        (let ((pivot (car loi))             ; tomamos el primer elemento como pivote
+              (rest (cdr loi)))             ; el resto de la lista sin el pivote
+          (append                           ; ordenamos recursivamente y combinamos segun el pred
+            (sort/predicate pred (filter (lambda (x) (pred x pivot)) rest)) ; filter selecciona los elementos x de rest que cumplen (pred x pivot) (menores)
+            (list pivot)                    ; Agregamos el pivote en medio de los elementos menores y mayores
+            (sort/predicate pred (filter (lambda (x) (not (pred x pivot))) rest)))))))  ; Ordenamos recursivamente todos los elementos mayores o iguales que el pivote
+ 
 ;;-------------------------------------------------------------------------------------------------------------------
 ;;Ejercicio 1.31
 ;;-------------------------------------------------------------------------------------------------------------------

@@ -2,6 +2,7 @@
 ;;
 ;;  SECCION 2
 ;;
+;;----------------------------------------------------------------------------
 ;;  EJERCICIO 2.1
 ;;  Implementa las cuatro operaciones necesarias para los bigits. Luego utiliza tu implementación para calcular el factorial de 10.
 ;;  ¿Cómo varía el tiempo de ejecución a medida que cambia este argumento?
@@ -56,6 +57,24 @@
 
 
 ;;----------------------------------------------------------------------------
-;; Ejercicio 2.2
+;;  EJERCICIO 2.2
 ;; Analiza críticamente cada una de estas representaciones propuestas. ¿En qué medida logran o no cumplir con la especificación del tipo de dato?
-;; Logran un buen cumplimineto en general, sin embargo, no son métodos muy eficientes.
+;; Logran un buen cumplimineto en general, sin embargo, no son métodos muy eficientes
+
+
+;;----------------------------------------------------------------------------
+;;  EJERCICIO 2.3
+;;  Define una representación de todos los enteros (negativos y no negativos) como diff-trees, donde un diff-tree es una lista definida por la gramática:
+;;  
+;;  Diff-tree ::= (one) | (diff Diff-tree Diff-tree)
+;;
+;;  La lista (one) representa el número 1. Si t1 representa n1 y t2 representa n2, entonces (diff t1 t2) es una representación de n1 − n2.
+
+;;  Por lo tanto, tanto (one) como (diff (one) (diff (one) (one))) son representaciones del número 1; (diff (diff (one) (one)) (one)) es una representación de −1.
+
+;;  Demuestra que cada número tiene infinitas representaciones en este sistema.
+
+;;  Convierte esta representación de los enteros en una implementación escribiendo las funciones zero, is-zero?, successor y predecessor, como se especifica en la página 32, excepto que ahora también se representan los enteros negativos. Tus procedimientos deben aceptar cualquiera de las múltiples representaciones legales de un entero en este esquema. Por ejemplo, si tu procedimiento successor recibe cualquiera de las infinitas representaciones legales de 1, debería producir una de las representaciones legales de 2. Es aceptable que diferentes representaciones legales de 1 produzcan diferentes representaciones legales de 2.
+
+;;  Escribe un procedimiento diff-tree-plus que realice suma en esta representación.
+;;  Tu procedimiento debe estar optimizado para la representación diff-tree y debe realizar su trabajo en tiempo constante (independiente del tamaño de sus entradas). En particular, no debe ser recursivo.

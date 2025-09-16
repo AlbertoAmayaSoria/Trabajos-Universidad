@@ -23,7 +23,6 @@
             int2                                            ; Devolvemos y
             (successor (plus (predecessor int1) int2)))))   ; 
 
-    ;(define mult referencia de tabulador
 
     (define mult                                              ; Multipliación
       (lambda (int1 int2)                                     ; Argumentos a multiplicar
@@ -39,10 +38,10 @@
     (define factorial                                         ; Factorial
       (lambda (int)                                           ; Número a aplicar el factorial
         (cond
-          ((
+          ((< int 0) '"No hay factorial para números menores que 0")
           ((equal? int 0) 1)                                  ; El factorial de 0 es 1 caso base
 
           (else 
-            (mult int [factorial(predecessor int)])))))))     ; Aplicamos recursión sobre la multipliación, (int x (int-1 x (...(1))))
+            (mult int (factorial(predecessor int)))))))     ; Aplicamos recursión sobre la multipliación, (int x (int-1 x (...(1))))
 
     .

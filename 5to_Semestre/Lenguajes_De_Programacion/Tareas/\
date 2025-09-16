@@ -5,17 +5,17 @@
 ;;  EJERCICIO 2.1
 ;;  Implementa las cuatro operaciones necesarias para los bigits. Luego utiliza tu implementación para calcular el factorial de 10.
 ;;  ¿Cómo varía el tiempo de ejecución a medida que cambia este argumento?
-;;  Si cambiamos el valor del factorial, mientras mayor es este mayor será el tiempo de ejecución, porque el factorial crece de manera muy acelerada y considerando que estamos trabajando con una lista para representarlo, esta lista será proporcional al tamaño del factorial
 ;;  
 ;;  ¿Cómo varía el tiempo de ejecución a medida que cambia la base?
-;;  Mientras mayor es la base, es menor el timepo que tarda, ya que es menor la cantidad de divisiones que tiene que realizar recursivamente.
+;;  
+;;  Explica por qué.
 ;;
-;;  IMPLEMENTACIÓN
+;;  IMPLEMENTACIÓn
 ;;
-    (define zero (lambda () 0))                             ; cero como función que devuelve 0
-    (define is-zero? (lambda (n) (zero? n)))                ; comprueba si un número es 0
-    (define successor (lambda (n) (+ n 1)))                 ; suma 1
-    (define predecessor (lambda (n) (- n 1)))               ; resta 1
+    (define zero (lambda () 0))                 ; cero como función que devuelve 0
+    (define is-zero? (lambda (n) (zero? n)))    ; comprueba si un número es 0
+    (define successor (lambda (n) (+ n 1)))     ; suma 1
+    (define predecessor (lambda (n) (- n 1)))   ; resta 1
 
     (define plus                                            ; Suma
       (lambda (int1 int2)                                   ; Elementos a sumar
@@ -45,17 +45,3 @@
             (mult int (factorial(predecessor int)))))))     ; Aplicamos recursión sobre la multipliación, (int x (int-1 x (...(1))))
 
     ; Implementar bignum con el metodo de diviciones
-    
-    (define bignum                                          ; Bignum
-      (lambda (base numero)                                 ; Base a convertir, numero a convertir
-        (if (< numero base)                                 ; Cuando es menor el numero que la base, se queda de la misma forma
-            (list numero)                                   ; Regresamos la lista con el numero como es
-                                                            ; Si no aplicamos "división"
-            (cons (modulo numero base)                      ; nos quedamos con el residuo de la división y seguimos trabajando con la parte entera de manera recursiva
-                  (bignum base (quotient numero base))))))  ; Seguimos trabajando con la parte entera de la división recursivamente
-
-
-;;----------------------------------------------------------------------------
-;; Ejercicio 2.2
-;; Analiza críticamente cada una de estas representaciones propuestas. ¿En qué medida logran o no cumplir con la especificación del tipo de dato?
-;; Logran un buen cumplimineto en general, sin embargo, no son métodos muy eficientes.

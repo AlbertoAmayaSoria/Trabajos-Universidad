@@ -78,3 +78,23 @@
 
 ;;  Escribe un procedimiento diff-tree-plus que realice suma en esta representación.
 ;;  Tu procedimiento debe estar optimizado para la representación diff-tree y debe realizar su trabajo en tiempo constante (independiente del tamaño de sus entradas). En particular, no debe ser recursivo.
+;;
+    (define zero (lambda ()) 0)
+    (
+
+
+;;----------------------------------------------------------------------------
+;;  EJERCICIO 2.4
+;;  Considera el tipo de dato de pilas de valores, con una interfaz que consiste en los procedimientos:
+;;  empty-stack
+
+;;  push
+
+;;  pop
+
+;;  top
+
+;;  empty-stack?
+
+;;  Escribe una especificación para estas operaciones en el estilo del ejemplo anterior.
+;;  ¿Cuáles operaciones son constructores y cuáles son observadores?

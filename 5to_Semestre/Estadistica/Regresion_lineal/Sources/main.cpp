@@ -11,17 +11,17 @@ int main(){
     /*
      *  Regresión líneal simple para 2 variables
      *  Datos predefinidos
-     */
+     *
     int cantDatos = 9;
     int ejeX[cantDatos] = {7, 1, 10, 5, 4, 3, 13, 10, 2};
-    int ejeY[cantDatos] = {2, 9, 2, 5, 7, 11, 2, 5, 14};/**/
+    int ejeY[cantDatos] = {2, 9, 2, 5, 7, 11, 2, 5, 14}; */
     
     /*
      *  Regresión lineal simple para 2 variables
      *  Ingresar datos desde terminal
      */
 
-    /*cout << "Cantidad de datos a tratar: ";
+    cout << "Cantidad de datos a tratar: ";
     int cantDatos;
     cin >> cantDatos;
 
@@ -33,8 +33,8 @@ int main(){
         cout << "Y = ";
         cin >> ejeY[i];
         cout << "(" << ejeX[i] << ", " << ejeY[i] << ")" << endl;
-    }
-    (1, 2)*/
+    }/**/
+    
 
     cout << endl;
 

@@ -3,14 +3,21 @@ from tkinter import messagebox
 import random
 import unicodedata
 
-# Función para quitar tildes y reemplazar ñ por n
+# -------------------------------------------
+# Función para normalizar letras
+# Quita tildes y reemplaza la ñ por n
+# -------------------------------------------
 def normalizar_letra(s):
+    # Separa los caracteres y elimina marcas diacríticas (acentos)
     s = ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
+    # Reemplaza ñ y Ñ por n
     s = s.replace('ñ', 'n').replace('Ñ', 'n')
     return s.lower()
 
-# Grupos de palabras con sus pistas
-
+# -------------------------------------------
+# Diccionario de grupos de palabras con sus pistas
+# Cada entrada: "Grupo": [(palabra, [pista1, pista2, pista3])]
+# -------------------------------------------
 grupos_palabras = {
     "Animales": [
         ("perro", ["Es un animal doméstico", "Es el mejor amigo del hombre", "Ladra"]),
@@ -76,38 +83,53 @@ grupos_palabras = {
     ]
 }
 
-# Variables globales
-palabra_secreta = ""
-palabra_mostrada = []
-pistas = []
-errores = 0
-letras_usadas = []
+# -------------------------------------------
+# Variables globales del juego
+# -------------------------------------------
+palabra_secreta = ""       # La palabra que se debe adivinar
+palabra_mostrada = []      # Lista con letras reveladas o "_"
+pistas = []                # Lista de pistas de la palabra
+errores = 0                # Contador de errores del jugador
+letras_usadas = []         # Letras ya ingresadas
 
+# -------------------------------------------
 # Función para iniciar el juego
+# -------------------------------------------
 def iniciar_juego():
     global palabra_secreta, palabra_mostrada, errores, pistas, letras_usadas
+    
+    # Obtener grupo seleccionado
     grupo = grupo_var.get()
+    # Elegir palabra aleatoria y sus pistas
     palabra_secreta, pistas = random.choice(grupos_palabras[grupo])
+    # Inicializar palabra mostrada con guiones bajos
     palabra_mostrada = ["_"] * len(palabra_secreta)
     errores = 0
     letras_usadas = []
 
+    # Actualizar etiquetas de la interfaz
     palabra_label.config(text=" ".join(palabra_mostrada))
     pista_label.config(text=f"Pista: {pistas[0]}")
     letras_label.config(text="Letras usadas: ")
     mensaje_label.config(text="¡Adivina la palabra!")
 
+    # Activar entrada y botón
     entrada.config(state="normal")
     boton_adivinar.config(state="normal")
     entrada.delete(0, tk.END)
+
+    # Dibujar estado inicial del ahorcado
     dibujar_ahorcado()
 
-# Función para adivinar letra
+# -------------------------------------------
+# Función para adivinar una letra
+# -------------------------------------------
 def adivinar():
     global errores
-    letra = entrada.get().lower()
+    letra = entrada.get().lower()   # Tomar letra ingresada
     entrada.delete(0, tk.END)
-
+    
+    # Validaciones
     if not letra or len(letra) != 1:
         messagebox.showinfo("Atención", "Debes ingresar solo una letra")
         return
@@ -118,18 +140,23 @@ def adivinar():
         messagebox.showinfo("Atención", f"Ya usaste la letra '{letra}'")
         return
 
+    # Agregar letras usadas
     letras_usadas.append(letra)
     letras_label.config(text="Letras usadas: " + ", ".join(letras_usadas))
 
+    # Comparar letra normalizada (sin acentos)
     letra_normal = normalizar_letra(letra)
     palabra_normal = normalizar_letra(palabra_secreta)
 
+    # Verificar si la letra está en la palabra
     if letra_normal in palabra_normal:
         # Revelar letra original con acento o ñ
         for i, l in enumerate(palabra_secreta):
             if normalizar_letra(l) == letra_normal:
                 palabra_mostrada[i] = l
         palabra_label.config(text=" ".join(palabra_mostrada))
+
+        # Verificar si ganó
         if "_" not in palabra_mostrada:
             mensaje_label.config(text="¡Ganaste! La palabra era " + palabra_secreta)
             entrada.config(state="disabled")
@@ -137,24 +164,34 @@ def adivinar():
     else:
         errores += 1
         mensaje_label.config(text=f"Error {errores}/6")
+
+        # Mostrar pistas progresivamente
         if errores == 2:
             pista_label.config(text=f"Pista: {pistas[0]} | {pistas[1]}")
         elif errores == 4:
             pista_label.config(text=f"Pista: {pistas[0]} | {pistas[1]} | {pistas[2]}")
+
+        # Dibujar ahorcado
         dibujar_ahorcado()
+
+        # Verificar si perdió
         if errores >= 6:
             mensaje_label.config(text="Perdiste. La palabra era " + palabra_secreta)
             entrada.config(state="disabled")
             boton_adivinar.config(state="disabled")
 
+# -------------------------------------------
 # Función para dibujar el ahorcado
+# -------------------------------------------
 def dibujar_ahorcado():
-    canvas.delete("all")
+    canvas.delete("all")    # Limpiar canvas
+    # Dibujar estructura
     canvas.create_line(50, 250, 150, 250, width=3)  # suelo
     canvas.create_line(100, 250, 100, 50, width=3)  # vertical
     canvas.create_line(100, 50, 200, 50, width=3)   # horizontal
     canvas.create_line(200, 50, 200, 80, width=3)   # cuerda
 
+    # Dibujar partes del ahorcado según errores
     if errores >= 1:
         canvas.create_oval(180, 80, 220, 120, width=3)  # cabeza
     if errores >= 2:
@@ -168,19 +205,26 @@ def dibujar_ahorcado():
     if errores >= 6:
         canvas.create_line(200, 180, 230, 220, width=3)  # pierna derecha
 
-# Ventana principal
+# -------------------------------------------
+# Configuración de la ventana principal
+# -------------------------------------------
 root = tk.Tk()
 root.title("Juego del Ahorcado")
 root.geometry("700x700")
 
+# Etiqueta y menú desplegable de grupos
 tk.Label(root, text="Selecciona un grupo:", font=("Arial", 16, "bold")).pack(pady=10)
 grupo_var = tk.StringVar(value="Animales")
 grupo_menu = tk.OptionMenu(root, grupo_var, *grupos_palabras.keys())
 grupo_menu.config(font=("Arial", 16), width=20, fg="black", bg="lightyellow")
+menu = grupo_menu["menu"]
+menu.config(font=("Arial", 16))  # Cambia tamaño de las opciones desplegables
 grupo_menu.pack(pady=10)
 
+# Botón para iniciar juego
 tk.Button(root, text="Iniciar Juego", command=iniciar_juego, font=("Arial", 16), fg="red").pack(pady=10)
 
+# Etiquetas para palabra, pistas, letras usadas y mensajes
 palabra_label = tk.Label(root, text="", font=("Arial", 24), fg="blue")
 palabra_label.pack(pady=10)
 
@@ -199,8 +243,10 @@ letras_label.pack(pady=5)
 mensaje_label = tk.Label(root, text="", font=("Arial", 16), fg="red")
 mensaje_label.pack(pady=5)
 
+# Canvas para dibujar ahorcado
 canvas = tk.Canvas(root, width=300, height=300, bg="white")
 canvas.pack(pady=10)
 
+# Iniciar loop principal de Tkinter
 root.mainloop()
 

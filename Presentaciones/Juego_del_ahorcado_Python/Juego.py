@@ -80,7 +80,43 @@ grupos_palabras = {
         ("barco", ["Se mueve sobre agua", "Puede ser grande o pequeño", "Usa velas o motor"]),
         ("bicicleta", ["Se pedalea", "Es ecológica", "Tiene dos ruedas"]),
         ("automóvil", ["Se conduce en carreteras", "Tiene motor", "Puede ser familiar o deportivo"])
-    ]
+    ],
+    "Videojuegos": [
+        ("minecraft", ["Es de cubos", "Se puede construir y minar", "Tiene Creepers"]),
+        ("fortnite", ["Battle Royale", "Construcción rápida", "Muy popular entre jóvenes"]),
+        ("super mario", ["Fontanero italiano", "Rescata a la princesa Peach", "Salta sobre Goombas"]),
+        ("zelda", ["Protagonista es Link", "La princesa da nombre al juego", "Espada Maestra"]),
+        ("call of duty", ["Es de disparos", "Muy realista", "Tiene modo multijugador"]),
+        ("pokemon", ["Atrápalos todos", "Pikachu es el más famoso", "Combates por turnos"]),
+        ("among us", ["Juego multijugador", "Hay impostores", "Se juega en naves espaciales"]),
+        ("league of legends", ["MOBA", "Cinco contra cinco", "Muy famoso en eSports"]),
+        ("roblox", ["Plataforma de juegos", "Mundos creados por usuarios", "Muy popular entre niños"]),
+        ("gta", ["Juego de mundo abierto", "Crímenes y misiones", "Muy realista"])
+    ],
+    "Youtubers": [
+        ("rubius", ["Es español", "Tiene descendencia nórdica", "Su saludo clásico es '¡Hola gentecilla!'"]),
+        ("mrbeast", ["Es estadounidense", "Hace retos y donaciones millonarias", "Muy famoso por sus giveaways"]),
+        ("vegetta777", ["Es español", "Famoso por Minecraft", "Colabora mucho con Willyrex"]),
+        ("willyrex", ["Es español", "Juegos de disparos y Minecraft", "Amigo de Vegetta777"]),
+        ("ibai", ["Es español", "Muy famoso en Twitch y YouTube", "Organiza eventos como la Velada del Año"]),
+        ("auronplay", ["Humor y streams", "Es español", "Muy popular en Twitch"]),
+        ("germán", ["Chileno", "Canal HolaSoyGerman", "Fue de los más suscritos del mundo"]),
+        ("ninja", ["Es estadounidense", "Famoso por Fortnite", "Cabello de colores"]),
+        ("dross", ["Es venezolano", "Cuentos de terror", "Su lema es '3 historias'"]),
+    ],
+    "Superheroes": [
+    ("spiderman", ["Tiene telarañas", "Se balancea entre rascacielos", "Su identidad es Peter Parker"]),
+    ("batman", ["Es de Gotham", "No tiene superpoderes", "Usa un traje negro y gadgets"]),
+    ("superman", ["Viene de Krypton", "Tiene super fuerza y vuela", "Su identidad es Clark Kent"]),
+    ("wonder woman", ["Es amazona", "Usa un lazo de la verdad", "Su nombre real es Diana Prince"]),
+    ("ironman", ["Es millonario e inventor", "Usa un traje de alta tecnología", "Su nombre real es Tony Stark"]),
+    ("hulk", ["Se transforma cuando se enoja", "Es gigante y verde", "Su nombre real es Bruce Banner"]),
+    ("thor", ["Es dios del trueno", "Usa un martillo llamado Mjolnir", "Viene de Asgard"]),
+    ("flash", ["Es extremadamente rápido", "Usa un traje rojo", "Su identidad es Barry Allen"]),
+    ("captain america", ["Tiene un escudo indestructible", "Es un super soldado", "Su nombre real es Steve Rogers"]),
+    ("black widow", ["Es experta en combate cuerpo a cuerpo", "Espía y miembro de los Vengadores", "Su nombre real es Natasha Romanoff"])
+]
+
 }
 
 # -------------------------------------------
@@ -103,7 +139,8 @@ def iniciar_juego():
     # Elegir palabra aleatoria y sus pistas
     palabra_secreta, pistas = random.choice(grupos_palabras[grupo])
     # Inicializar palabra mostrada con guiones bajos
-    palabra_mostrada = ["_"] * len(palabra_secreta)
+    #palabra_mostrada = ["_"] * len(palabra_secreta)
+    palabra_mostrada = ["_" if l != " " else " " for l in palabra_secreta]
     errores = 0
     letras_usadas = []
 
@@ -133,9 +170,9 @@ def adivinar():
     if not letra or len(letra) != 1:
         messagebox.showinfo("Atención", "Debes ingresar solo una letra")
         return
-    if not letra.isalpha():
-        messagebox.showinfo("Atención", "Debes ingresar solo letras")
-        return
+    #if not letra.isalpha():
+        #messagebox.showinfo("Atención", "Debes ingresar solo letras")
+        #return
     if letra in letras_usadas:
         messagebox.showinfo("Atención", f"Ya usaste la letra '{letra}'")
         return
@@ -213,34 +250,35 @@ root.title("Juego del Ahorcado")
 root.geometry("700x700")
 
 # Etiqueta y menú desplegable de grupos
-tk.Label(root, text="Selecciona un grupo:", font=("Arial", 16, "bold")).pack(pady=10)
+tk.Label(root, text="Juego del ahorcado", font=("Arial", 24, "bold"), fg="red").pack(pady=10)
+tk.Label(root, text="Selecciona un grupo:", font=("Arial", 20, "bold")).pack(pady=10)
 grupo_var = tk.StringVar(value="Animales")
 grupo_menu = tk.OptionMenu(root, grupo_var, *grupos_palabras.keys())
-grupo_menu.config(font=("Arial", 16), width=20, fg="black", bg="lightyellow")
+grupo_menu.config(font=("Arial", 20), width=24, fg="black", bg="lightyellow")
 menu = grupo_menu["menu"]
-menu.config(font=("Arial", 16))  # Cambia tamaño de las opciones desplegables
+menu.config(font=("Arial", 20))  # Cambia tamaño de las opciones desplegables
 grupo_menu.pack(pady=10)
 
 # Botón para iniciar juego
-tk.Button(root, text="Iniciar Juego", command=iniciar_juego, font=("Arial", 16), fg="red").pack(pady=10)
+tk.Button(root, text="Iniciar Juego", command=iniciar_juego, font=("Arial", 20), fg="red").pack(pady=10)
 
 # Etiquetas para palabra, pistas, letras usadas y mensajes
 palabra_label = tk.Label(root, text="", font=("Arial", 24), fg="blue")
 palabra_label.pack(pady=10)
 
-pista_label = tk.Label(root, text="", font=("Arial", 14), fg="blue", wraplength=600)
+pista_label = tk.Label(root, text="", font=("Arial", 18), fg="blue", wraplength=600)
 pista_label.pack(pady=5)
 
-entrada = tk.Entry(root, font=("Arial", 16))
+entrada = tk.Entry(root, font=("Arial", 20))
 entrada.pack(pady=5)
 
-boton_adivinar = tk.Button(root, text="Adivinar", command=adivinar, font=("Arial", 16))
+boton_adivinar = tk.Button(root, text="Adivinar", command=adivinar, font=("Arial", 20))
 boton_adivinar.pack(pady=5)
 
-letras_label = tk.Label(root, text="Letras usadas: ", font=("Arial", 14), fg="purple")
+letras_label = tk.Label(root, text="Letras usadas: ", font=("Arial", 18), fg="purple")
 letras_label.pack(pady=5)
 
-mensaje_label = tk.Label(root, text="", font=("Arial", 16), fg="red")
+mensaje_label = tk.Label(root, text="", font=("Arial", 20), fg="red")
 mensaje_label.pack(pady=5)
 
 # Canvas para dibujar ahorcado
@@ -249,4 +287,8 @@ canvas.pack(pady=10)
 
 # Iniciar loop principal de Tkinter
 root.mainloop()
-
+# Inicia el loop
+# Mantiene la ventana abierta y escucha los clics de botones/ingreso de texto/adivinar/etc. 
+# Se ejecutan las respuestas a eventos dentro de este loop
+# Cierra el loop cuando se cierra la ventana
+# Todo el código que configura la ventana y los widgets se ejecuta antes de root.mainloop(), y el loop se encarga de que la ventana permanezca interactiva hasta que la cierres.

@@ -18,13 +18,70 @@ int main(){
     //  (muestras, criterios) = valores de x_criterios
     int datos[muestras][criterios];
 
+    int calificaciones[muestras] = {85, 74, 76, 90, 85, 87, 94, 98, 81, 91,76, 74};
+    int examen[muestras] = {65, 50, 55, 65, 55, 70, 65, 70, 55, 70, 50, 55};
+    int clasesP[muestras] = {1, 7, 5, 2, 6, 3, 2, 5, 4, 3, 1, 4};
+
     for(int i = 0 ; i < muestras ; ++i){
-        cout << "Ingresa la calificacion del alumno " << i + 1  " : "
-        for(int j = 0 ; j < criterios ; ++j){
-            cout << "criterios"
-        }
+        datos[i][0] = calificaciones[i];
+        datos[i][1] = examen[i];
+        datos[i][2] = clasesP[i];
     }
 
+    /*for(int i = 0 ; i < muestras ; ++i){
+        //cout << "Ingresa la calificacion del alumno " << i + 1  << " : ";
+        for(int j = 0 ; j < criterios ; ++j){
+            if(j == 0){
+                cout << "Ingresa la calificacion del alumno " << i + 1  << " : ";
+                cin >> datos[i][j];
+            }else {
+                cout << "criterio " << j + 1 << " :" << endl;
+                cin >> datos[i][j];
+            }
+        }
+    }*/
+
+    int sum_y = 0;
+    int sum_x1 = 0;
+    int sum_x2 = 0;
+    int sum_x1_cuadrado = 0;
+    int sum_x2_cuadrado = 0;
+    int sum_x1x2 = 0;
+    int sum_x1y = 0;
+    int sum_x2y = 0;
+
+
+    for(int i = 0 ; i < muestras ; ++i){
+        sum_y = calificaciones[i] + sum_y;
+        sum_x1 = examen[i] + sum_x1;
+        sum_x2 = clasesP[i] + sum_x2;
+        sum_x1_cuadrado = examen[i] * examen[i] + sum_x1_cuadrado;
+        sum_x2_cuadrado = clasesP[i] * clasesP[i] + sum_x2_cuadrado;
+        sum_x1x2 = examen[i] * clasesP[i] + sum_x1x2;
+        sum_x1y = examen[i] * calificaciones[i] + sum_x1y;
+        sum_x2y = clasesP[i] * calificaciones[i] + sum_x2y;
+    }
+
+    cout << sum_y << endl;
+    cout << sum_x1 << endl;
+    cout << sum_x2 << endl;
+    cout << sum_x1_cuadrado << endl;
+    cout << sum_x2_cuadrado << endl;
+    cout << sum_x1x2 << endl;
+    cout << sum_x1y << endl;
+    cout << sum_x2y << endl;
+
+    
+    
+    for(int i = 0 ; i < muestras ; ++i){
+        for(int j = 0 ; j < criterios ; ++j){
+            if(j == 0){
+                cout << "Datos del alumno " << i << endl;
+            }
+            cout << datos[i][j] << " ,";
+        }
+        cout << endl;
+    }
 
 
     return 0;

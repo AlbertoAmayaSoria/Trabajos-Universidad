@@ -2,6 +2,8 @@
 #include <iostream>
 #include <math.h>
 
+#include "../Headers/Matriz.h"
+
 //#include "../Headers/Regresion_lineal.hpp"
 
 using namespace std;
@@ -61,28 +63,41 @@ int main(){
         sum_x1y = examen[i] * calificaciones[i] + sum_x1y;
         sum_x2y = clasesP[i] * calificaciones[i] + sum_x2y;
     }
-
-    cout << sum_y << endl;
-    cout << sum_x1 << endl;
-    cout << sum_x2 << endl;
-    cout << sum_x1_cuadrado << endl;
-    cout << sum_x2_cuadrado << endl;
-    cout << sum_x1x2 << endl;
-    cout << sum_x1y << endl;
-    cout << sum_x2y << endl;
-
     
     
     for(int i = 0 ; i < muestras ; ++i){
         for(int j = 0 ; j < criterios ; ++j){
             if(j == 0){
-                cout << "Datos del alumno " << i << endl;
+                cout << "Datos del alumno " << i + 1 << endl;
             }
-            cout << datos[i][j] << " ,";
+            cout << datos[i][j];
+            if(j < (criterios - 1)){
+                cout<< " ,";
+            }
         }
         cout << endl;
     }
 
+    cout << "Σ(y) = \t\t" << sum_y << endl;
+    cout << "Σ(x_1) = \t" << sum_x1 << endl;
+    cout << "Σ(x_2) = \t" << sum_x2 << endl;
+    cout << "Σ(x_1)^2 = \t" << sum_x1_cuadrado << endl;
+    cout << "Σ(x_2)^2 = \t" << sum_x2_cuadrado << endl;
+    cout << "Σ(x_1*x_2) = \t" << sum_x1x2 << endl;
+    cout << "Σ(x_1*y) = \t" << sum_x1y << endl;
+    cout << "Σ(x_2*y) = \t" << sum_x2y << endl;
+
+    Matriz matX(criterios, criterios);
+    
+    for(int i = 0 ; i < muestras ; ++i){
+        for(int j = 0 ; j < criterios ; ++j){
+            if((i == 0){
+                if(j == 1){
+                    matX[0][1] = ;
+                }
+            }
+        }
+    }
 
     return 0;
 }

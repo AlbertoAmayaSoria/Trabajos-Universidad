@@ -1,5 +1,5 @@
 Cadena alimenticia marina:
-    Base de la cadena:
+    Base de la cadena (Productores/plancton):
         *Fitoplancton
             Son pequeñas plantas que utilizan la luz solar para producir su propio alimento, son los productores primarios del oceano al igual que las plantas en la tierra.
         *Zooplancton
@@ -7,7 +7,7 @@ Cadena alimenticia marina:
 
         Estos generan nutrientes escenciales para innumerables criaturas marinas
 
-    Primera capa/presas:
+    Primera capa (Consumidores primarios/secundarios/presas):
         *Peces pequeños:
             -Arenque.
             -Sardinas.
@@ -15,23 +15,22 @@ Cadena alimenticia marina:
         *Crustáceos:
             -Krill.
             -Copépodos.
-    Estos dependen del plancton como su princpial fuente de alimento.
+    Estos dependen del plancton como su principial fuente de alimento.
     Convierten la energía almacenada en el plancton en una forma que los animales más grandes pueden utilizar.
 
-    Depredadores:
+    Cima de la cadena alimentaria (depredadores que no tienen depredadores naturales):
         *Atunes
         *Tiburones
         *Focas
         *Aves marinas
-    Estos animales dependen de los peces pequeños y cristáceos para su supervivencia.
-    La abundancia de presas influye en el número de depredadores que el ecosistema puede soportar.
-    (Si hay menos alimentos para peces pequeños hay menos alimentos para los depredadores, lo cual deja de manifiesto la interconexión de toda la cadena alimenticia marina).
-
-    Gigantes gentiles(cima de la cadena alimentaria):
+        *Orcas
+    Estos animales dependen de los peces pequeños y crustáceos para su supervivencia.
         *Ballenas
     Estos animales se alimentan por medio de filtración y consumen enormes cantidades de krill y otros pequeños crústaceos.
-    Estas controlan las poblaciones de krill y otros organismos, evitando que cualquier especie se vuelva demasiado dominante, manteniendo la salud y estabilidad general del ecosistema marino.
 
+
+    La abundancia de presas influye en el número de depredadores que el ecosistema puede soportar (Si hay menos alimentos para peces pequeños hay menos alimentos para los depredadores, lo cual deja de manifiesto la interconexión de toda la cadena alimenticia marina).
+    Estas especies controlan las poblaciones de krill y otros organismos, evitando que cualquier especie se vuelva demasiado dominante, manteniendo la salud y estabilidad general del ecosistema marino.
 
 
 
@@ -39,15 +38,7 @@ La base de la red trófica oceanica se encuentra en algas unicelulares y otros o
 El fitoplancton utililza clorofilia y otros pigmentos fotorreceptores para realizar la fotosintesis.
 El lugar donde crece el fitoplancton depende de la luz solar disponible, la temperatura y los niveles de nutrientes. Dado que las aguas frías suelen tener más nutrientes que las cálidas, el fitoplancton suele ser más abundante en aguas frías.
 
-Dada esta situación, el incremento en la TSM, reduce la producción de fitoplancton la cual es la base de la cadena alimenticia en el fondo marino, si este pilar en el fondo marino se ve afectado causa un problema en la red alimenticia marina.
-
-Si se ve afectada la cadena alimenticia marina, causa deficiencia en sectores pesqueros.
-
-
-
-
-
-
+Dada esta situación, el incremento en la TSM reduce la producción de fitoplancton, la cual es la base de la cadena alimenticia en el fondo marino, si este pilar en el fondo marino se ve afectado causa un problema en la red alimenticia marina. Si se ve afectada la cadena alimenticia marina, causa deficiencia en los sectores pesqueros, estos a su vez si se ven afectados generan un impacto economico en las zonas pesqueras.  
 
 
 

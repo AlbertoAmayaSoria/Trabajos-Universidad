@@ -18,7 +18,7 @@ Cadena alimenticia marina:
     Estos dependen del plancton como su principial fuente de alimento.
     Convierten la energía almacenada en el plancton en una forma que los animales más grandes pueden utilizar.
 
-    Cima de la cadena alimentaria (depredadores que no tienen depredadores naturales):
+    Cima de la cadena alimentaria (Depredadores que no tienen depredadores naturales):
         *Atunes
         *Tiburones
         *Focas
@@ -29,8 +29,8 @@ Cadena alimenticia marina:
     Estos animales se alimentan por medio de filtración y consumen enormes cantidades de krill y otros pequeños crústaceos.
 
 
-    La abundancia de presas influye en el número de depredadores que el ecosistema puede soportar (Si hay menos alimentos para peces pequeños hay menos alimentos para los depredadores, lo cual deja de manifiesto la interconexión de toda la cadena alimenticia marina).
     Estas especies controlan las poblaciones de krill y otros organismos, evitando que cualquier especie se vuelva demasiado dominante, manteniendo la salud y estabilidad general del ecosistema marino.
+    La abundancia de presas influye en el número de depredadores que el ecosistema puede soportar (Si hay menos alimentos para peces pequeños hay menos alimentos para los depredadores, lo cual deja de manifiesto la interconexión de toda la cadena alimenticia marina).
 
 
 

@@ -5,7 +5,7 @@
 
 MIT License
 
-Copyright (c) 2025 Angel Alberto Hombre Amaya Soria
+Copyright (c) 2025 Angel Alberto Amaya Soria, Hombre
 
 Se permite la reutilización, copia y distribución de este código para cualquier propósito, **siempre que** se mantenga esta nota de copyright y esta licencia.  
 Esto incluye proyectos personales, académicos o comerciales.

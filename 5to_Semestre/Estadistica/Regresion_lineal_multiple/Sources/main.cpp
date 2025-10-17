@@ -18,7 +18,7 @@ int main(){
     //  (2, criterios) = valores de x_2
     //  ...
     //  (muestras, criterios) = valores de x_criterios
-    int datos[muestras][criterios];
+    /*int datos[muestras][criterios];
 
     int calificaciones[muestras] = {85, 74, 76, 90, 85, 87, 94, 98, 81, 91,76, 74};
     int examen[muestras] = {65, 50, 55, 65, 55, 70, 65, 70, 55, 70, 50, 55};
@@ -41,7 +41,7 @@ int main(){
                 cin >> datos[i][j];
             }
         }
-    }*/
+    }*
 
     int sum_y = 0;
     int sum_x1 = 0;
@@ -78,26 +78,28 @@ int main(){
         cout << endl;
     }
 
-    cout << "Σ(y) = \t\t" << sum_y << endl;
+    /*cout << "Σ(y) = \t\t" << sum_y << endl;
     cout << "Σ(x_1) = \t" << sum_x1 << endl;
     cout << "Σ(x_2) = \t" << sum_x2 << endl;
     cout << "Σ(x_1)^2 = \t" << sum_x1_cuadrado << endl;
     cout << "Σ(x_2)^2 = \t" << sum_x2_cuadrado << endl;
     cout << "Σ(x_1*x_2) = \t" << sum_x1x2 << endl;
     cout << "Σ(x_1*y) = \t" << sum_x1y << endl;
-    cout << "Σ(x_2*y) = \t" << sum_x2y << endl;
+    cout << "Σ(x_2*y) = \t" << sum_x2y << endl;*/
 
-    Matriz matX(criterios, criterios);
-    
-    for(int i = 0 ; i < muestras ; ++i){
-        for(int j = 0 ; j < criterios ; ++j){
-            if((i == 0){
-                if(j == 1){
-                    matX[0][1] = ;
-                }
-            }
+    //Matriz matX(criterios, criterios);
+    int cantSumatoriasX = 0;
+    for(int i = 0, i < criterios ; ++i){
+        if(i != 0){
+        cantSumatoriasX = i + 1 + cantSumatoriasX;    
         }
     }
+
+    Matriz sumatoriasX();
+
+    Matriz grande(criterios + 1, criterios + 1);
+    Matriz conY(criterios + 1, 1);
+    Matriz conAB(criterios + 1, 1);
 
     return 0;
 }

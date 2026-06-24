@@ -15,16 +15,17 @@ mkdir espacio_tarea3 && cd espacio_tarea3
 # 2. Inicializar un repositorio Git vacío
 git init
 
-# 3. Vincular el repositorio remoto original
-git remote add -f origin [https://github.com/AlbertoAmayaSoria/Trabajos-Universidad.git](https://github.com/AlbertoAmayaSoria/Trabajos-Universidad.git)
-
-# 4. Habilitar la funcionalidad de clonación dispersa
+# 3. Habilitar sparse-checkout ANTES de conectar el remoto
 git sparse-checkout init --cone
 
-# 5. Indicar la ruta de la subcarpeta exacta
+# 4. Establecer la ruta de la subcarpeta
 git sparse-checkout set "6to_Semestre/Analisis_algoritmos/Tarea3_AnalisisAlgoritmos"
 
-# 6. Descargar los archivos exclusivamente de esa ruta desde la rama principal
+# 5. Vincular el remoto y hacer FETCH con profundidad 1 (IGNORA EL HISTORIAL PESADO)
+git remote add origin https://github.com/AlbertoAmayaSoria/Trabajos-Universidad.git
+git fetch --depth 1 origin main
+
+# 6. Traer los archivos finales instantáneamente
 git pull origin main
 ```
 

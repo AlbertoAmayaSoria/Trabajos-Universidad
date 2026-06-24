@@ -47,7 +47,7 @@ int main() {
         
         auto tiempo_fin = chrono::high_resolution_clock::now();
 
-        //Duración en microsegundos (usamos double para conservar precisión)
+        //Duración en microsegundos
         chrono::duration<double, micro> duracion = tiempo_fin - tiempo_inicio;
         tiempos_ejecucion[i] = duracion.count();
     }

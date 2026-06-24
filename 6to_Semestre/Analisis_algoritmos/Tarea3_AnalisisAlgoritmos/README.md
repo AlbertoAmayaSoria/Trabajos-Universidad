@@ -15,13 +15,13 @@ mkdir espacio_tarea3 && cd espacio_tarea3
 # 2. Inicializar un repositorio Git vacío
 git init
 
-# 3. Vincular el repositorio remoto original de tus trabajos de la universidad
+# 3. Vincular el repositorio remoto original
 git remote add -f origin [https://github.com/AlbertoAmayaSoria/Trabajos-Universidad.git](https://github.com/AlbertoAmayaSoria/Trabajos-Universidad.git)
 
 # 4. Habilitar la funcionalidad de clonación dispersa
 git sparse-checkout init --cone
 
-# 5. Indicar la ruta de la subcarpeta exacta proporcionada por el usuario
+# 5. Indicar la ruta de la subcarpeta exacta
 git sparse-checkout set "6to_Semestre/Analisis_algoritmos/Tarea3_AnalisisAlgoritmos"
 
 # 6. Descargar los archivos exclusivamente de esa ruta desde la rama principal
